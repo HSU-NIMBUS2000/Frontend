@@ -5,6 +5,8 @@ import { useSpring, a } from '@react-spring/three'; // react-spring의 애니메
 import styled from "styled-components";
 import { ACESFilmicToneMapping, ColorManagement } from "three"; // sRGBEncoding 제거
 import bunny_doctor from '../../assets/model/bunny_doctor.glb'
+import banana_cat from '../../assets/model/banana_cat.glb'
+import doctor_simi from '../../assets/model/doctor_simi.glb'
 
 
 // 최신 Color Management 설정
@@ -12,7 +14,7 @@ ColorManagement.legacyMode = false;
 
 // 3D 모델 컴포넌트 정의
 const Model = () => {
-  const { scene } = useGLTF(/*bunny_doctor*/);
+  const { scene } = useGLTF(doctor_simi);
 
   //재질 설정
   scene.traverse((child) => {
@@ -25,11 +27,22 @@ const Model = () => {
 
   // y축 기준으로 상하 이동(애니메이션)
   const { positionY } = useSpring({
-    from: { positionY: 3 },
+
+    //bunny_doctor
+    // from: { positionY: 3 },
+
+    //doctor_simi
+    from: { positionY: -13.7 },
     to: async (next) => {
       while (true) {
-        await next({ positionY: 3.3 }); // 위로
-        await next({ positionY: 3 });   // 아래로
+      // //bunny_doctor
+      // await next({ positionY: 3.3 }); // 위로
+      // await next({ positionY: 2.7 });   // 아래로
+
+
+        //doctor_simi
+        await next({ positionY: -13.4 }); // 위로
+        await next({ positionY: -14 });   // 아래로
       }
     },
     config: { tension: 50, friction: 20, duration: 1500 },
@@ -40,10 +53,24 @@ const Model = () => {
     <a.primitive
       object={scene}
       scale={1}
-      position-x={-6}
-      position-y={positionY} // y축 애니메이션
-      position-z={-10}
-      rotation={[0, Math.PI / 6, 0]} // 살짝 오른쪽 보게 설정함
+
+      //bunny_doctor
+      // position-x={-6}
+      // position-y={positionY} // y축 애니메이션
+      // position-z={-10}
+      // rotation={[0, Math.PI / 6, 0]} // 살짝 오른쪽 보게 설정함
+
+      //banana_cat
+      // position-x={-1.5}
+      // position-y={-0.5}
+      // position-z={2}
+      // rotation={[0, Math.PI / 5, 0]} // 살짝 오른쪽 보게 설정함
+
+      //doctor_simi
+      position-x={-2}
+      position-y={positionY}
+      position-z={-1}
+      rotation={[0, -Math.PI/3, 0]} // 살짝 오른쪽 보게 설정함
     />
   );
 };
