@@ -5,6 +5,7 @@ import Chatting from "../entities/MainForUser/Chatting";
 import Listening from '../shared/components/Listening'
 import Avatar from "../entities/MainForUser/Avatar";
 import Logo from "../entities/MainForUser/Logo";
+import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
 
 function MainForUser() {
   const [chattings, setChattings] = useState([])
@@ -13,6 +14,9 @@ function MainForUser() {
     <MainLayout>
 
       <Logo />
+
+<div style={{zIndex: '9999'}}><ToggleSwitch /></div>
+      
 
       <Avatar />
 
