@@ -8,6 +8,7 @@ import bunny_doctor from '../../assets/model/bunny_doctor.glb'
 import banana_cat from '../../assets/model/banana_cat.glb'
 import doctor_simi from '../../assets/model/doctor_simi.glb'
 
+
 // 최신 Color Management 설정
 ColorManagement.legacyMode = false;
 
