@@ -23,6 +23,7 @@ const FormInfo = styled.div`
   font-size: 30px;
   font-weight: 500;
   text-align: left;
+  margin-bottom:20px;
 `;
 
 const InfoInputWrapper = styled.div`
@@ -32,13 +33,14 @@ const InfoInputWrapper = styled.div`
   padding: 0px 30px 0 30px;
   border: 1px solid #6572d2;
   border-radius: 3em;
-  height: 150px;
+  height: 100px;
   margin-bottom: 70px;
 `;
 
 const InfoInput = styled.input`
   border: none;
-  font-size: 30px;
+  font-size: 25px;
+  width:80%;
   outline:none;
 `;
 
@@ -46,8 +48,8 @@ const IdCheckButton = styled.button`
   background-color: #6572d2;
   color: white;
   border: none;
-  border-radius: 1em;
-  padding: 30px;
-  font-size: 25px;
+  border-radius: 3em;
+  padding: 20px;
+  font-size: 20px;
   cursor: pointer;
 `;
