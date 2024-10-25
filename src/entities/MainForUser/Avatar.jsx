@@ -6,12 +6,13 @@ import styled from "styled-components";
 import { ACESFilmicToneMapping, ColorManagement } from "three"; // sRGBEncoding 제거
 import bunny_doctor from '../../assets/model/bunny_doctor.glb'
 
+
 // 최신 Color Management 설정
 ColorManagement.legacyMode = false;
 
 // 3D 모델 컴포넌트 정의
 const Model = () => {
-  const { scene } = useGLTF(bunny_doctor);
+  const { scene } = useGLTF(/*bunny_doctor*/);
 
   //재질 설정
   scene.traverse((child) => {
