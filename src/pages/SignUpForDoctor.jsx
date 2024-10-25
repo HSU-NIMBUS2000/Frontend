@@ -25,11 +25,7 @@ function SignUpForDoctor() {
 export default SignUpForDoctor;
 
 const MainLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100vw;
-  min-height: 100vh;
+  padding: 100px 280px 100px 280px
 `;
 
 const SignUpIntro = styled.div`
@@ -41,16 +37,14 @@ const SignUpIntro = styled.div`
 `;
 
 const SignUpForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
+
 
 const SignUpSubmitBtn=styled.button`
 background-color: #6572d2;
   color: white;
+  width: 100%;
   border: none;
-  width: 1400px;
   height: 120px;
   border-radius: 1em;
   padding: 30px;

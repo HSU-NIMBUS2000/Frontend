@@ -16,17 +16,10 @@ function SignUpInput({ formInfo, placeholder, type, isExistBtn }) {
 export default SignUpInput;
 
 const MainLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  gap: 20px;
 `;
 
 const FormInfo = styled.div`
   align-items: baseline;
-  width: 1400px;
   font-size: 30px;
   font-weight: 500;
   text-align: left;
@@ -34,10 +27,11 @@ const FormInfo = styled.div`
 
 const InfoInputWrapper = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 0px 30px 0 30px;
   border: 1px solid #6572d2;
   border-radius: 3em;
-  width: 1400px;
   height: 150px;
   margin-bottom: 70px;
 `;
@@ -45,9 +39,6 @@ const InfoInputWrapper = styled.div`
 const InfoInput = styled.input`
   border: none;
   font-size: 30px;
-  width: 80%;
-  heignt: 90%;
-  margin-left: 30px;
   outline:none;
 `;
 
@@ -55,8 +46,6 @@ const IdCheckButton = styled.button`
   background-color: #6572d2;
   color: white;
   border: none;
-  width: 190px;
-  height: 90px;
   border-radius: 1em;
   padding: 30px;
   font-size: 25px;
