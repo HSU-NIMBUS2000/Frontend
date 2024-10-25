@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Chatting from "../entities/MainForUser/Chatting";
 import Listening from '../shared/components/Listening'
-import Avatar from "../entities/MainForUser/Avatar";
+// import Avatar from "../entities/MainForUser/Avatar";
 import Logo from "../entities/MainForUser/Logo";
 import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
 
@@ -14,11 +14,7 @@ function MainForUser() {
     <MainLayout>
 
       <Logo />
-
-<div style={{zIndex: '9999'}}><ToggleSwitch /></div>
-      
-
-      <Avatar />
+      {/* <Avatar /> */}
 
       <Chatting chattings={chattings} />
 
@@ -33,6 +29,7 @@ function MainForUser() {
 
 export default MainForUser;
 
+// 스타일드 컴포넌트
 const MainLayout = styled.div`
   position: relative;
   background: linear-gradient(135deg, #FFDEAD, #FFD1DC, #E5CCDA);
