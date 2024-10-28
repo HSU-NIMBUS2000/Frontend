@@ -27,15 +27,16 @@ function SignUpForDoctor() {
         />
         <SignUpInput
           formInfo="의사면허 번호를 입력해주세요"
-          placeholder="면허 번호"
+          placeholder="면허번호"
           type="text"
           isExistBtn={true}
+          warningSentence="이미 존재하는 번호입니다."
         />
         <SignUpInput
           formInfo="비밀번호를 입력해주세요"
           placeholder="비밀번호"
           type="password"
-          warningSentence="비밀번호는 영문/숫자/특수기호를 조합하여 8자 이상  설정해야 합니다."
+          warningSentence="비밀번호는 영문/숫자/특수기호를 조합하여 8자 이상 설정해야 합니다."
         />
       </SignUpForm>
 

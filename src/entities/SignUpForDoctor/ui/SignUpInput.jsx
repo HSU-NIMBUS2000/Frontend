@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
+
 function SignUpInput({ formInfo, placeholder, type, isExistBtn, warningSentence }) {
   // useState 훅 사용
-  // inputValue : 사용자가 입력한 값을 저장하는 상태 변수 (초기값은 빈 문자열)
+  // inputValue : 사용자가 입력한 값을 저장하는 상태 변수 (초기값 빈 문자열)
   const [inputValue, setInputValue] = useState("");
-  // isSatisfied : 입력값이 조건을 만족하는지 여부를 저장하는 상태 변수 (초기값은 true)
+  // isSatisfied : 입력값이 조건을 만족하는지 여부를 저장하는 상태 변수 (초기값 true)
   const [isSatisfied, setIsSatisfied] = useState(true);
 
   // 입력 필드의 값이 변경될 때마다 호출
@@ -15,12 +16,13 @@ function SignUpInput({ formInfo, placeholder, type, isExistBtn, warningSentence 
     // setInputValuefh inputValue의 상태를 업데이트
     setInputValue(value);
 
-    // 비밀번호 조건: 8자 이상, 영문/숫자/특수기호 조합
-    if (formInfo === "비밀번호를 입력해주세요") {
+    // password 일때 검증 수행
+    if (type==="password") {
       const passwordCriteria = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
       setIsSatisfied(passwordCriteria.test(value));
     }
   };
+  
 
   return (
     <MainLayout>
@@ -47,12 +49,16 @@ const MainLayout = styled.div`
 const FormInfoWrapper=styled.div`
   display: flex;
   gap:20px;
+  align-items: center;
 `;
 
 const Warning=styled.div`
   color: #EE2B2B;
-  font-size:25px;
+  font-size:20px;
   font-weight:600;
+  margin-bottom: 20px;
+  position: relative;
+  top: -1.5px;
 `;
 
 const FormInfo = styled.div`
