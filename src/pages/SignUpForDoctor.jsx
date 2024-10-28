@@ -19,13 +19,11 @@ function SignUpForDoctor() {
           formInfo="성함을 알려주세요"
           placeholder="이름"
           type="text"
-          isExistBtn={false}
         />
         <SignUpInput
           formInfo="소속 병원을 알려주세요"
           placeholder="병원명"
           type="text"
-          isExistBtn={false}
         />
         <SignUpInput
           formInfo="의사면허 번호를 입력해주세요"
@@ -37,7 +35,7 @@ function SignUpForDoctor() {
           formInfo="비밀번호를 입력해주세요"
           placeholder="비밀번호"
           type="password"
-          isExistBtn={false}
+          warningSentence="비밀번호는 영문/숫자/특수기호를 조합하여 8자 이상  설정해야 합니다."
         />
       </SignUpForm>
 
