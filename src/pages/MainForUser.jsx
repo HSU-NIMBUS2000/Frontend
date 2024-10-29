@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import styled from "styled-components";
 import Chatting from "../entities/MainForUser/Chatting";
 import Listening from '../shared/components/Listening';
@@ -12,6 +12,10 @@ import banana_cat from '../assets/model/banana_cat.glb';
 function MainForUser() {
   const [chattings, setChattings] = useState([]);
   const [avatar, setAvatar] = useState(doctor_simi);
+
+  useEffect(()=>{
+    console.log(avatar)
+  }, [])
 
   function changeAvatar(n) {
     switch (n) {

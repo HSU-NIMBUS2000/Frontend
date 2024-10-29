@@ -1,41 +1,31 @@
+.btn-group{
+  /* border: 1px solid rgba(255, 255, 255, 0.2); 은은한 외곽선 */
+}
+
 .btn {
   font: inherit;
-  background-color: rgba(240, 240, 240, 0.2); /* 유리 재질 반투명 효과 */
-  border: 0;
-  /* color: #242424; */
+  background-color: #938f8d;
+  outline: none;
+  border: none;
   color: white;
   font-size: 1.15rem;
   padding: 0.375em 1em;
   text-shadow: 0 0.0625em 0 rgba(255, 255, 255, 0.5);
-  box-shadow: 
-    inset 0 0.0625em 0 rgba(255, 255, 255, 0.3),
-    0 0.0625em 0 rgba(255, 255, 255, 0.2),
-    0 0.125em 0 rgba(255, 255, 255, 0.1),
-    0 0.25em 0 rgba(240, 240, 240, 0.15),
-    0 0.375em 0 rgba(220, 220, 220, 0.15),
-    0 0.425em 0 rgba(200, 200, 200, 0.2);
   transition: 0.23s ease;
   cursor: pointer;
   font-weight: 400;
   margin: -1px;
-  backdrop-filter: blur(15px); /* 유리 재질 블러 효과 */
+  backdrop-filter: blur(5px); /* 약간의 블러 효과 */
+  box-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.4), /* 부드러운 빛 퍼짐 */
+    0 0 16px rgba(255, 255, 255, 0.3); /* 바깥쪽 은은한 광채 */
+  border-radius: 1em;
 }
 
-.middle {
-  border-radius: 0px;
+.middle, .right, .left {
+  border-radius: 0.5em;
   background-color: rgba(240, 240, 240, 0.2); /* 일관된 유리 효과 */
-}
-
-.right {
-  border-top-right-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  background-color: rgba(240, 240, 240, 0.2);
-}
-
-.left {
-  border-top-left-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
-  background-color: rgba(240, 240, 240, 0.2);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
 .btn:active {
@@ -44,12 +34,15 @@
               0 0.03em 0 rgba(255, 255, 255, 0.2),
               0 0.0625em 0 rgba(240, 240, 240, 0.1),
               0 0.2em 0 rgba(200, 200, 200, 0.2);
-  letter-spacing: 0.1em;
   color: red;
-  backdrop-filter: blur(5px);
 }
 
 .btn:focus {
   color: red;
-  /* outline: 2px solid #DB4455; */
+  outline: none; /* 기본 outline 제거 */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* 포커스 시 조금 더 밝게 빛남 */
+  box-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.6), /* 빛을 강조 */
+    0 0 12px rgba(255, 255, 255, 0.5),
+    0 0 24px rgba(255, 255, 255, 0.4); /* 넓게 퍼지는 부드러운 빛 */
 }
