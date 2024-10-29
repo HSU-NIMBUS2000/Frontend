@@ -55,9 +55,9 @@ const MainLayout = styled.div`
 `;
 
 const SignUpIntro = styled.div`
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 600;
-  margin: 50px 0px 80px 0px; // 상우하좌
+  margin: 50px 0px 30px 0px; // 상우하좌
   text-align: center;
 `;
 
@@ -68,12 +68,12 @@ const SignUpForm = styled.div`
 const SignUpSubmitBtn = styled.button`
   background-color: #6572d2;
   color: white;
-  width: 100%;
   border: none;
-  height: 120px;
+  height: 70px;
   border-radius: 1em;
-  margin-top: 30px;
-  font-size: 30px;
+  margin-top: 50px;
+  font-size: 20px;
   font-weight: 600;
+  width:100%;
   cursor: pointer;
 `;
