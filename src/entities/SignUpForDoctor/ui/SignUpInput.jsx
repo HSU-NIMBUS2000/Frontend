@@ -13,7 +13,7 @@ function SignUpInput({ formInfo, placeholder, type, isExistBtn, warningSentence 
   const handleInputChange = (e) => {
     // 사용자가 입력한 값을 가져와 value에 저장
     const value = e.target.value;
-    // setInputValuefh inputValue의 상태를 업데이트
+    // setInputValue inputValue의 상태를 업데이트
     setInputValue(value);
 
     // password 일때 검증 수행
@@ -48,42 +48,39 @@ const MainLayout = styled.div`
 
 const FormInfoWrapper=styled.div`
   display: flex;
-  gap:20px;
   align-items: center;
+  margin-top:40px;
 `;
 
 const Warning=styled.div`
   color: #EE2B2B;
-  font-size:20px;
+  font-size:15px;
   font-weight:600;
-  margin-bottom: 20px;
-  position: relative;
-  top: -1.5px;
+  margin-bottom: 12px;
+  padding-left:10px;
 `;
 
 const FormInfo = styled.div`
   align-items: baseline;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 500;
   text-align: left;
-  margin-bottom:20px;
+  margin-bottom:10px;
 `;
 
 const InfoInputWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0px 30px 0 30px;
+  padding: 0px 30px 0px 30px;
   border: 1px solid #6572d2;
   border-radius: 3em;
-  height: 100px;
-  margin-bottom: 70px;
+  height: 80px;
 `;
 
 const InfoInput = styled.input`
   border: none;
-  font-size: 25px;
-  width:80%;
+  font-size: 15px;
+  width:85%;
   outline:none;
 `;
 
@@ -92,7 +89,8 @@ const IdCheckButton = styled.button`
   color: white;
   border: none;
   border-radius: 3em;
-  padding: 20px;
-  font-size: 20px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
 `;

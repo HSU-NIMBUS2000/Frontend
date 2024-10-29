@@ -17,7 +17,7 @@ justify-content : center;
 align-items: center;
 width: 130px;
 height:120px;
-margin-top:100px;
+margin-top:80px;
 `
 
 const Img = styled.img`
