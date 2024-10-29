@@ -37,9 +37,9 @@ const MainLayout = styled.div`
 `;
 
 const LoginIntro=styled.div`
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 600;
-  margin: 50px 0px 80px 0px; // 상우하좌
+  margin: 50px 0px 30px 0px; // 상우하좌
   text-align: center;
 `;
 
@@ -50,19 +50,19 @@ const LoginForm=styled.div`
 const LoginSubmitBtn=styled.button`
 background-color: #6572d2;
 color: white;
-width: 100%;
+width: 80%;
 border: none;
-height: 120px;
+height: 70px;
 border-radius: 1em;
 margin-top: 30px;
-font-size: 30px;
+font-size: 20px;
 font-weight: 600;
 cursor: pointer;
 `;
 
 const LoginWarning=styled.div`
 color:#EE2B2B;
-font-size:25px;
+font-size:20px;
 font-weight:600;
 `;
 
@@ -74,12 +74,12 @@ const GoToSignUp=styled.div`
 `;
 
 const SuggestSignUp=styled.div`
-font-size:30px;
+font-size:20px;
 color:#939393;
 `;
 
 const SingUpLink=styled(Link)`
-font-size:30px;
+font-size:20px;
 font-weight:500;
 color:#000000;
 text-decoration: underline;
