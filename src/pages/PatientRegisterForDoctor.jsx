@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PatientRegisterIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
-import PatientRegisterForm from "../entities/PatientRegisterForDoctor/PatientRegisterForm";
+import PatientRegisterForm from "../entities/PatientRegisterForDoctor/ui/PatientRegisterForm";
 import PatientRegisterBtn from "../shared/components/ForDoctor/StandardButton";
 
 function PatientRegisterForDoctor() {

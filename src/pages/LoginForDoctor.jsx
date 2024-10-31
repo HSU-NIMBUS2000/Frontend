@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import LoginForm from "../entities/LoginForDoctor/LoginForm";
+import LoginForm from "../entities/LoginForDoctor/ui/LoginForm";
 import LoginIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
 import LoginSubmitBtn from "../shared/components/ForDoctor/StandardButton";
-import GoToSignUp from "../entities/LoginForDoctor/GoToSignUp";
-import LoginWarning from "../entities/LoginForDoctor/LoginWarning";
+import GoToSignUp from "../entities/LoginForDoctor/ui/GoToSignUp";
+import LoginWarning from "../entities/LoginForDoctor/ui/LoginWarning";
 
 function LoginForDoctor() {
   return (

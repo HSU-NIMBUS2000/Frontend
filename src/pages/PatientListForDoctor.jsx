@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import PatientListIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
-import PatientCardList from "../entities/PatientListForDoctor/PatientCardList";
-import SearchBar from "../entities/PatientListForDoctor/SearchBar";
+import PatientCardList from "../entities/PatientListForDoctor/ui/PatientCardList";
+import SearchBar from "../entities/PatientListForDoctor/ui/SearchBar";
 
 function PatientListForDoctor() {
   return (

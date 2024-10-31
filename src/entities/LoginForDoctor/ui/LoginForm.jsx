@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LoginInputForm from "../../shared/components/ForDoctor/StandardInputForm";
+import LoginInputForm from "../../../shared/components/ForDoctor/StandardInputForm";
 
 function LoginForm() {
   return (
