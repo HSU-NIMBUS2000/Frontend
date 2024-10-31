@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import StandardInputForm from "../../shared/components/ForDoctor/StandardInputForm";
-import FlexibleInputForm from "../../shared/components/ForDoctor/FlexibleInputForm";
+import StandardInputForm from "../../../shared/components/ForDoctor/StandardInputForm";
+import FlexibleInputForm from "../../../shared/components/ForDoctor/FlexibleInputForm";
 import GenderSelect from "./GenderSelect";
 
 function PatientRegisterForm() {
