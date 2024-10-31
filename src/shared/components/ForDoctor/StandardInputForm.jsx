@@ -21,6 +21,17 @@ function StandardInputForm({
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
       setIsSatisfied(passwordCriteria.test(value));
     }
+
+    if(type==="email"){
+      const emailCriteria =
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      setIsSatisfied(emailCriteria.test(value));
+    }
+
+    if(type==="birth"){
+      const birthCriteria = /^\d{4}.\d{2}.\d{2}$/;
+      setIsSatisfied(birthCriteria.test(value));
+    }
   };
 
   return (
