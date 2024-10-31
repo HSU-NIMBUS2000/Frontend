@@ -1,28 +1,28 @@
 import React from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Logo from "../entities/SignUpForDoctor/ui/Logo";
-import LoginInput from "../entities/LoginForDoctor/LoginInput";
+import LoginForm from "../entities/LoginForDoctor/LoginForm";
+import LoginIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
+import LoginSubmitBtn from "../shared/components/ForDoctor/StandardButton";
+import GoToSignUp from "../entities/LoginForDoctor/GoToSignUp";
+import LoginWarning from "../entities/LoginForDoctor/LoginWarning";
 
 function LoginForDoctor() {
   return (
     <MainLayout>
-      <Logo />
-      <LoginIntro>
-        {" "}
-        의사 계정으로 로그인하기
-      </LoginIntro>
-      <LoginForm>
-        <LoginInput type="text" placeholder="의사 면허 번호를 입력해주세요"/>
-        <LoginInput type="password" placeholder="비밀번호를 입력해주세요"/>
-      </LoginForm>
-      <LoginWarning>통신하면 해야징</LoginWarning>
-      <LoginSubmitBtn>로그인하기</LoginSubmitBtn>
-      <GoToSignUp>
-        <SuggestSignUp>아직 회원이 아니신가요?</SuggestSignUp>
-        <SingUpLink to="/SignUpForDoctor">회원가입하기</SingUpLink>
-      </GoToSignUp>
+      {/* 의사 로그인 페이지 인트로 */}
+      <LoginIntro text="의사 계정으로 로그인하기"></LoginIntro>
+
+      {/* 의사 로그인 페이지 로그인 폼 */}
+      <LoginForm />
+
+      {/* 로그인 실패 시 나타나는 문구 */}
+      <LoginWarning />
+
+      {/* 의사 로그인 페이지 로그인 폼 제출 버튼 */}
+      <LoginSubmitBtn text="로그인하기" />
+
+      {/* 의사 로그인 페이지에서 회원가입 페이지로 이동*/}
+      <GoToSignUp />
     </MainLayout>
   );
 }
@@ -34,54 +34,5 @@ const MainLayout = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 100px 280px 100px 280px;
-`;
-
-const LoginIntro=styled.div`
-  font-size: 30px;
-  font-weight: 600;
-  margin: 50px 0px 30px 0px; // 상우하좌
-  text-align: center;
-`;
-
-const LoginForm=styled.div`
-  width: 100%;
-`;
-
-const LoginSubmitBtn=styled.button`
-background-color: #6572d2;
-color: white;
-width: 80%;
-border: none;
-height: 70px;
-border-radius: 1em;
-margin-top: 30px;
-font-size: 20px;
-font-weight: 600;
-cursor: pointer;
-`;
-
-const LoginWarning=styled.div`
-color:#EE2B2B;
-font-size:20px;
-font-weight:600;
-`;
-
-const GoToSignUp=styled.div`
-  display: flex;
-  align-items: center;
-  margin-top:30px;
-  gap:10px;
-`;
-
-const SuggestSignUp=styled.div`
-font-size:20px;
-color:#939393;
-`;
-
-const SingUpLink=styled(Link)`
-font-size:20px;
-font-weight:500;
-color:#000000;
-text-decoration: underline;
-text-decoration-thickness: 2px;
+  gap: 30px;
 `;
