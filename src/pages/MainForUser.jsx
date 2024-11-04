@@ -5,7 +5,7 @@ import Listening from '../shared/components/Listening';
 import Avatar from "../entities/MainForUser/Avatar";
 import Logo from "../entities/MainForUser/Logo";
 import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
-import bunny_doctor from '../assets/model/bunny_doctor.glb';
+// import bunny_doctor from '../assets/model/bunny_doctor.glb';
 import doctor_simi from '../assets/model/doctor_simi.glb';
 import banana_cat from '../assets/model/banana_cat.glb';
 
@@ -23,7 +23,7 @@ function MainForUser() {
         setAvatar(doctor_simi);
         break;
       case 1:
-        setAvatar(bunny_doctor);
+        // setAvatar(bunny_doctor);
         break;
       case 2:
         setAvatar(banana_cat);
