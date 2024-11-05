@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { passwordState } from "../../state/recoil";
 import { useRecoilState } from "recoil";
 
-function StandardButton({ type, text }) {
-  const [password, setPassword] = useRecoilState(passwordState)
+function StandardButton({ type, text, state }) {
 
   function btnClickHandler(){
     if(type === 'login'){

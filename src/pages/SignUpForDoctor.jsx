@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import styled from "styled-components";
 import SignUpIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
 import SubmitButton from "../shared/components/ForDoctor/StandardButton";

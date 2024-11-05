@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import {
-  signUpNameState,
-  signUpDoctorIdState,
-  signUpHospitalState,
-  inputState,
-  signUpPasswordState,
-  loginDoctorIdState,
-  loginPasswordState
+  inputState
 } from "../../state/recoil";
 
 function StandardInputForm({
@@ -18,70 +12,14 @@ function StandardInputForm({
   isExistBtn,
   warningSentence,
 }) {
-  const [isSatisfied, setIsSatisfied] = useState(true);
-
-  let atomState;
-
-  switch (type) {
-    case "signUpName":
-      atomState = signUpNameState;
-      break;
-    case "signUpHospital":
-      atomState = signUpHospitalState;
-      break;
-    case "signUpDoctorId":
-      atomState = signUpDoctorIdState;
-      break;
-    case "signUpPasswordState":
-      atomState = signUpPasswordState;
-      break;
-    case "loginDoctorIdState": // 의사 로그인시 입력하는 의사면허 번호
-      atomState = loginDoctorIdState;
-      break;
-    case "loginPasswordState": // 의사 로그인 시 입력하는 비밀번호
-      atomState = loginPasswordState;
-      break;
-
-    default:
-      atomState = inputState;
-      break;
-  }
-
-  const [inputValue, setInputValue] = useRecoilState(atomState);
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
-
-    if (type === "password") {
-      const passwordCriteria =
-        /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
-      setIsSatisfied(passwordCriteria.test(value));
-    } else if (type === "email") {
-      const emailCriteria = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      setIsSatisfied(emailCriteria.test(value));
-    } else if (type === "birth") {
-      const birthCriteria = /^\d{4}.\d{2}.\d{2}$/;
-      setIsSatisfied(birthCriteria.test(value));
-    }
-
-    console.log("type:" + type + "value" + inputValue);
-  };
 
   return (
     <MainLayout>
       <FormInfoWrapper>
         <FormInfo>{formInfo}</FormInfo>
-        {/* isSatisfied가 false일 때만 화면에 표시되는 조건부 렌더링 */}
-        {!isSatisfied && <Warning>{warningSentence}</Warning>}
       </FormInfoWrapper>
       <InfoInputWrapper>
-        <InfoInput
-          type={type}
-          placeholder={placeholder}
-          value={inputValue}
-          onChange={handleInputChange}
-        />
+        <InfoInput/>
         {/* isExistBtn이 true일 때만 화면에 표시되는 조건부 렌더링 */}
         {isExistBtn && <IdCheckButton>중복 확인</IdCheckButton>}
       </InfoInputWrapper>
