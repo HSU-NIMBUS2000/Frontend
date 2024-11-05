@@ -1,24 +1,23 @@
 import { atom } from 'recoil';
 
-/* 의사 회원가입 관련 리코일 */
-export const signUpNameState = atom({
-    key: 'signUpNameState',
-    default: "",
+export const doctorIdState = atom({
+    key: 'doctorIdState',
+    default: "12345",
 });
 
-export const signUpDoctorIdState = atom({
-    key: 'signUpDoctorIdState',
-    default: "",
-});
-
-export const signUpHospitalState = atom({
+export const hospitalState = atom({
     key: 'hospitalState',
-    default: "",
+    default: "펴닝병원",
 });
 
-export const signUpPasswordState = atom({
-    key: 'signUpPasswordState',
-    default: "",
+export const emailState = atom({
+    key: 'emailState',
+    default: "pyeoning@p.com",
+});
+
+export const passwordState = atom({
+    key: 'passwordState',
+    default: "pyeoning123!",
 });
 
 export const significantState = atom({
@@ -28,18 +27,7 @@ export const significantState = atom({
 
 export const genderState = atom({
     key: 'genderState',
-    default: "",
-})
-
-/* 의사 로그인 관련 리코일 */
-export const loginDoctorIdState = atom({
-    key: 'loginDoctorIdState',
-    default: "",
-})
-
-export const loginPasswordState = atom({
-    key: 'loginPasswordState',
-    default: "",
+    default: "여",
 })
 
 /* ?? */
@@ -47,8 +35,6 @@ export const inputState = atom({
     key: 'inputState',
     default: "",
 });
-
-/* 환자 정보 등록 페이지 관련 리코일 */
 
 export const nameState = atom({
     key: 'nameState', // 고유한 키를 설정해야 함
