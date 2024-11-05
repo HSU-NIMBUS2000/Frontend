@@ -1,6 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import {
+  signUpNameState,
+  signUpDoctorIdState,
+  signUpHospitalState,
+  inputState,
+  signUpPasswordState,
+  loginDoctorIdState,
+  loginPasswordState
+} from "../../state/recoil";
 
 function StandardInputForm({
   formInfo,
@@ -9,8 +18,36 @@ function StandardInputForm({
   isExistBtn,
   warningSentence,
 }) {
-  const [inputValue, setInputValue] = useState("");
   const [isSatisfied, setIsSatisfied] = useState(true);
+
+  let atomState;
+
+  switch (type) {
+    case "signUpName":
+      atomState = signUpNameState;
+      break;
+    case "signUpHospital":
+      atomState = signUpHospitalState;
+      break;
+    case "signUpDoctorId":
+      atomState = signUpDoctorIdState;
+      break;
+    case "signUpPasswordState":
+      atomState = signUpPasswordState;
+      break;
+    case "loginDoctorIdState": // 의사 로그인시 입력하는 의사면허 번호
+      atomState = loginDoctorIdState;
+      break;
+    case "loginPasswordState": // 의사 로그인 시 입력하는 비밀번호
+      atomState = loginPasswordState;
+      break;
+
+    default:
+      atomState = inputState;
+      break;
+  }
+
+  const [inputValue, setInputValue] = useRecoilState(atomState);
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -20,18 +57,15 @@ function StandardInputForm({
       const passwordCriteria =
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
       setIsSatisfied(passwordCriteria.test(value));
-    }
-
-    if(type==="email"){
-      const emailCriteria =
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    } else if (type === "email") {
+      const emailCriteria = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       setIsSatisfied(emailCriteria.test(value));
-    }
-
-    if(type==="birth"){
+    } else if (type === "birth") {
       const birthCriteria = /^\d{4}.\d{2}.\d{2}$/;
       setIsSatisfied(birthCriteria.test(value));
     }
+
+    console.log("type:" + type + "value" + inputValue);
   };
 
   return (
@@ -57,6 +91,7 @@ function StandardInputForm({
 
 export default StandardInputForm;
 
+// 스타일드 컴포넌트들은 그대로 유지합니다.
 const MainLayout = styled.div``;
 
 const FormInfoWrapper = styled.div`
@@ -84,6 +119,7 @@ const FormInfo = styled.div`
 const InfoInputWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0px 30px 0px 30px;
   border: 1px solid #6572d2;
   border-radius: 3em;

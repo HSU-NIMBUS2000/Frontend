@@ -11,7 +11,7 @@ function PatientRegisterForm() {
       <StandardInputForm
         formInfo="환자 이름을 입력해주세요"
         placeholder="이름을 입력해주세요"
-        type="text"
+        type="name"
       />
 
       {/* 생년월일 입력 폼 */}
@@ -29,7 +29,7 @@ function PatientRegisterForm() {
       <StandardInputForm
         formInfo="환자 병명을 입력해주세요"
         placeholder="병명을 입력해주세요"
-        type="text"
+        type="disease"
       />
 
       {/* 이메일 입력 폼 */}
@@ -44,7 +44,7 @@ function PatientRegisterForm() {
       <FlexibleInputForm
         formInfo="환자 특이사항을 입력해주세요"
         placeholder="특이사항을 입력해주세요"
-        type="text"
+        type="significant"
         height={280}
       />
 
@@ -52,7 +52,7 @@ function PatientRegisterForm() {
       <FlexibleInputForm
         formInfo="환자 맞춤형 프롬프트를 입력해주세요"
         placeholder="프롬프트를 입력해주세요"
-        type="text"
+        type="propmt"
         height={280}
       />
 

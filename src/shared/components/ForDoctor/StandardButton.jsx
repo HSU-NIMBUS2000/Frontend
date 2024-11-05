@@ -1,8 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { passwordState } from "../../state/recoil";
+import { useRecoilState } from "recoil";
 
-function StandardButton({ text }) {
-  return <Button>{text}</Button>;
+function StandardButton({ type, text }) {
+  const [password, setPassword] = useRecoilState(passwordState)
+
+  function btnClickHandler(){
+    if(type === 'login'){
+      // 아이디랑 패스워드 
+      // post 로그인 요청
+    }else if(type==='signUp'){
+      // post 회원가입 요청
+    }
+    
+  }
+  return <Button onClick={btnClickHandler}>{text}</Button>;
 }
 
 export default StandardButton;

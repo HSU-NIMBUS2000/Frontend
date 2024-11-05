@@ -19,7 +19,7 @@ function LoginForDoctor() {
       <LoginWarning />
 
       {/* 의사 로그인 페이지 로그인 폼 제출 버튼 */}
-      <LoginSubmitBtn text="로그인하기" />
+      <LoginSubmitBtn text="로그인하기" type="login"/>
 
       {/* 의사 로그인 페이지에서 회원가입 페이지로 이동*/}
       <GoToSignUp />
