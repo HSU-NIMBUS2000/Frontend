@@ -26,5 +26,5 @@ const MainLayout = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 100px 280px 100px 280px;
-  gap: 40px;
+  gap: 30px;
 `;

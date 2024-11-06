@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import SignUpInputForm from "./SingUpInputForm";
+import SignUpInputForm from "./SignUpInputForm";
 
-function SignUpForm({isClicked}) {
+function SignUpForm({ isClicked }) {
   return (
     <MainLayout>
       <SignUpInputForm
@@ -16,7 +16,12 @@ function SignUpForm({isClicked}) {
         placeholder="병원명"
         type="hospital"
         isClicked={isClicked}
-
+      />
+      <SignUpInputForm
+        formInfo="이메일을 알려주세요"
+        placeholder="이메일"
+        type="email"
+        isClicked={isClicked}
       />
       <SignUpInputForm
         formInfo="의사면허 번호를 입력해주세요"
@@ -25,7 +30,6 @@ function SignUpForm({isClicked}) {
         isExistBtn={true}
         warningSentence="이미 존재하는 번호입니다."
         isClicked={isClicked}
-
       />
       <SignUpInputForm
         formInfo="비밀번호를 입력해주세요"
@@ -42,4 +46,9 @@ export default SignUpForm;
 
 const MainLayout = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; // 각 입력 필드 간격 조정
+  box-sizing: border-box;
+  margin-bottom : 20px;
 `;

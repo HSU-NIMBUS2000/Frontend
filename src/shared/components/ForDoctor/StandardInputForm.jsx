@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import React from "react";
 import styled from "styled-components";
-import {
-  inputState
-} from "../../state/recoil";
 
 function StandardInputForm({
   formInfo,
@@ -38,13 +34,13 @@ const FormInfoWrapper = styled.div`
   margin-top: 40px;
 `;
 
-const Warning = styled.div`
-  color: #ee2b2b;
-  font-size: 15px;
-  font-weight: 600;
-  margin-bottom: 12px;
-  padding-left: 10px;
-`;
+// const Warning = styled.div`
+//   color: #ee2b2b;
+//   font-size: 15px;
+//   font-weight: 600;
+//   margin-bottom: 12px;
+//   padding-left: 10px;
+// `;
 
 const FormInfo = styled.div`
   align-items: baseline;

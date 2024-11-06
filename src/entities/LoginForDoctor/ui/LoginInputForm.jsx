@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import {
-    doctorIdState,
-    passwordState,
-    inputState
-} from "../../../shared/state/recoil";
+import { doctorIdState, passwordState } from "../../../shared/components/state/LoginForDoctor";
 
 function LoginInputForm({
   formInfo,
@@ -15,31 +11,23 @@ function LoginInputForm({
   warningSentence,
 }) {
   const [isSatisfied, setIsSatisfied] = useState(true);
+  
+  // useRecoilState 호출
+  const [doctorId, setDoctorId] = useRecoilState(doctorIdState);
+  const [password, setPassword] = useRecoilState(passwordState);
+  const [localValue, setLocalValue] = useState(""); // default 값 처리용 로컬 상태
 
-  let atomState;
-
-  switch (type) {
-    case "doctorId": // 의사 로그인시 입력하는 의사면허 번호
-      atomState = doctorIdState;
-      break;
-    case "password": // 의사 로그인 시 입력하는 비밀번호
-      atomState = passwordState;
-      break;
-
-    default:
-      atomState = inputState;
-      break;
-  }
-
-  const [inputValue, setInputValue] = useRecoilState(atomState);
+  // 상태와 설정 함수 결정
+  const inputValue = type === "doctorId" ? doctorId : type === "password" ? password : localValue;
+  const setInputValue =
+    type === "doctorId" ? setDoctorId : type === "password" ? setPassword : setLocalValue;
 
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
 
     if (type === "password") {
-      const passwordCriteria =
-        /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
+      const passwordCriteria = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
       setIsSatisfied(passwordCriteria.test(value));
     } else if (type === "email") {
       const emailCriteria = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -49,14 +37,13 @@ function LoginInputForm({
       setIsSatisfied(birthCriteria.test(value));
     }
 
-    console.log("type:" + type + "value" + inputValue);
+    console.log("type:" + type + " value:" + inputValue);
   };
 
   return (
     <MainLayout>
       <FormInfoWrapper>
         <FormInfo>{formInfo}</FormInfo>
-        {/* isSatisfied가 false일 때만 화면에 표시되는 조건부 렌더링 */}
         {!isSatisfied && <Warning>{warningSentence}</Warning>}
       </FormInfoWrapper>
       <InfoInputWrapper>
@@ -66,7 +53,6 @@ function LoginInputForm({
           value={inputValue}
           onChange={handleInputChange}
         />
-        {/* isExistBtn이 true일 때만 화면에 표시되는 조건부 렌더링 */}
         {isExistBtn && <IdCheckButton>중복 확인</IdCheckButton>}
       </InfoInputWrapper>
     </MainLayout>
@@ -75,7 +61,6 @@ function LoginInputForm({
 
 export default LoginInputForm;
 
-// 스타일드 컴포넌트들은 그대로 유지합니다.
 const MainLayout = styled.div``;
 
 const FormInfoWrapper = styled.div`
