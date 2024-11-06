@@ -20,7 +20,7 @@ function Summary (){
 export default Summary;
 
 const MainLayout = styled.div`
-width: 1000px;
+width: 100%;
 padding: 20px 30px;
 border-radius: 16px;
 background-color: #D7E3FF;

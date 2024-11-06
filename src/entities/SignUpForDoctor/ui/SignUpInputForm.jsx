@@ -3,11 +3,11 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import {
   nameState,
-  doctorIdState,
   hospitalState,
+  emailState,
+  doctorIdState,
   passwordState,
-  inputState
-} from "../../../shared/state/recoil";
+} from "../../../shared/components/state/SignUpForDoctor";
 
 function SignUpInputForm({
   formInfo,
@@ -18,62 +18,81 @@ function SignUpInputForm({
 }) {
   const [isSatisfied, setIsSatisfied] = useState(true);
 
-  let atomState;
+  // useRecoilState 호출
+  const [doctorId, setDoctorId] = useRecoilState(doctorIdState);
+  const [password, setPassword] = useRecoilState(passwordState);
+  const [name, setName] = useRecoilState(nameState);
+  const [email, setEmail] = useRecoilState(emailState);
+  const [hospital, setHospital] = useRecoilState(hospitalState);
+  const [localValue, setLocalValue] = useState(""); // default 값 처리용 로컬 상태
+
+  let inputValue;
+  let setInputValue;
 
   switch (type) {
-    case "name":
-      atomState = nameState;
-      break;
-    case "hospital":
-      atomState = hospitalState;
-      break;
     case "doctorId":
-      atomState = doctorIdState;
+      inputValue = doctorId;
+      setInputValue = setDoctorId;
       break;
     case "password":
-      atomState = passwordState;
+      inputValue = password;
+      setInputValue = setPassword;
+      break;
+    case "name":
+      inputValue = name;
+      setInputValue = setName;
+      break;
+    case "email":
+      inputValue = email;
+      setInputValue = setEmail;
+      break;
+    case "hospital":
+      inputValue = hospital;
+      setInputValue = setHospital;
       break;
     default:
-      atomState = inputState;
+      inputValue = localValue;
+      setInputValue = setLocalValue;
       break;
   }
-
-  const [inputValue, setInputValue] = useRecoilState(atomState);
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
 
-    if (type === "signUpassword") {
+    // 입력 검증
+    if (type === "password") {
       const passwordCriteria =
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
       setIsSatisfied(passwordCriteria.test(value));
-    } else if (type === "signUpEmail") {
+    } else if (type === "email") {
       const emailCriteria = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       setIsSatisfied(emailCriteria.test(value));
-    } else if (type === "signUpBirth") {
+    } else if (type === "birth") {
       const birthCriteria = /^\d{4}.\d{2}.\d{2}$/;
       setIsSatisfied(birthCriteria.test(value));
+    } else {
+      setIsSatisfied(true); // 특정 검증이 없는 경우 항상 만족하는 상태로 설정
     }
-
-    console.log("type:" + type + "value" + inputValue);
+    console.log("type:" + type + " value:" + inputValue);
   };
 
   return (
     <MainLayout>
       <FormInfoWrapper>
         <FormInfo>{formInfo}</FormInfo>
-        {/* isSatisfied가 false일 때만 화면에 표시되는 조건부 렌더링 */}
-        {!isSatisfied && <Warning>{warningSentence}</Warning>}
+        {/* isSatisfied가 false이고 warningSentence가 있을 때만 경고 문구 표시 */}
+        {!isSatisfied && warningSentence && (
+          <Warning>{warningSentence}</Warning>
+        )}
       </FormInfoWrapper>
       <InfoInputWrapper>
         <InfoInput
-          type={type}
+          type={type === "password" ? "password" : "text"}
           placeholder={placeholder}
           value={inputValue}
           onChange={handleInputChange}
         />
-        {/* isExistBtn이 true일 때만 화면에 표시되는 조건부 렌더링 */}
+        {/* isExistBtn이 true일 때만 중복 확인 버튼 표시 */}
         {isExistBtn && <IdCheckButton>중복 확인</IdCheckButton>}
       </InfoInputWrapper>
     </MainLayout>
@@ -82,7 +101,7 @@ function SignUpInputForm({
 
 export default SignUpInputForm;
 
-// 스타일드 컴포넌트들은 그대로 유지합니다.
+// 스타일드 컴포넌트들
 const MainLayout = styled.div``;
 
 const FormInfoWrapper = styled.div`
@@ -111,7 +130,7 @@ const InfoInputWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 30px 0px 30px;
+  padding: 0px 30px;
   border: 1px solid #6572d2;
   border-radius: 3em;
   height: 80px;

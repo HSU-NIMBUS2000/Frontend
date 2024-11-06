@@ -68,7 +68,7 @@ const MainLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: repeat(5, auto);
-  width: 1000px;
+  width: 100%;
 `;
 
 const Name = styled.div`
