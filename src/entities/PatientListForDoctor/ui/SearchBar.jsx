@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Polygon from "../../../assets/image/Polygon.svg";
 import Search from "../../../assets/image/Search.svg";
-import Dropdown from "../../../shared/components/Dropdown/Dropdown";
+import Dropdown from "./Dropdown/Dropdown";
 
 function SearchBar() {
   return (

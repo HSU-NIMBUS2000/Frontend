@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfo";
+import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfoForDoctor";
 
 function Table({ isEdited }) {
   const [name, setName] = useRecoilState(nameState);

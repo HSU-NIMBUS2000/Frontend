@@ -3,7 +3,7 @@ import styled from "styled-components";
 import save from "../../../assets/image/save.svg";
 import edit from "../../../assets/image/edit.svg";
 import { useRecoilValue } from "recoil";
-import { nameState } from "../../../shared/components/state/PatientInfo";
+import { nameState } from "../../../shared/components/state/PatientInfoForDoctor";
 
 function Title({ isEdited, setIsEdited }) {
 
