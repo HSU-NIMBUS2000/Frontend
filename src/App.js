@@ -7,9 +7,9 @@ import LoginForDoctor from "./pages/LoginForDoctor";
 import PatientListForDoctor from "./pages/PatientListForDoctor";
 import PatientRegisterForDoctor from "./pages/PatientRegisterForDoctor";
 import ShowPatientChatForDoctor from "./pages/ShowPatientChatForDoctor";
-import GoTo from "./pages/\bGoTo";
+import GoTo from "./pages/GoTo";
 import ApplyForUser from "./pages/ApplyForUser";
-import PatientInfo from "./pages/PatientInfo";
+import PatientInfoForDoctor from "./pages/PatientInfoForDoctor";
 
 function App() {
   return (
@@ -22,9 +22,10 @@ function App() {
         <Route path="/PatientRegisterForDoctor" element={<PatientRegisterForDoctor/>}/> {/* 의사 환자 등록 페이지 */}
         <Route path="/ShowPatientChatForDoctor" element={<ShowPatientChatForDoctor/>}/> {/* 의사 환자 채팅 내역 조회 페이지*/}
         <Route path="/GoTo" element={<GoTo/>}/> {/* 터미널 */}
-        <Route path="/apply" element={<ApplyForUser />} />   {/* 메인 페이지 */}
-        <Route path="/PatientInfo" element={<PatientInfo />} /> {/* 환자 정보 조회 페이지 */}
+        <Route path="/ApplyForUser" element={<ApplyForUser />} />   {/* 메인 페이지 */}
+        <Route path="/PatientInfoForDoctor" element={<PatientInfoForDoctor />} /> {/* 환자 정보 조회 페이지 */}
       </Routes>
+
     </Router>
   );
 }

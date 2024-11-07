@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import logo from '../assets/image/pyeoning.svg';
-import Table from "../entities/PatientInfo/ui/Table";
-import ChatHistoryButton from "../entities/PatientInfo/ui/ChatHistoryButton";
-import Title from "../entities/PatientInfo/ui/TItle";
-import Summary from "../entities/PatientInfo/ui/Summary";
+import Table from "../entities/PatientInfoForDoctor/ui/Table";
+import ChatHistoryButton from "../entities/PatientInfoForDoctor/ui/ChatHistoryButton";
+import Title from "../entities/PatientInfoForDoctor/ui/TItle";
+import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
 
-function PatientInfo() {
+function PatientInfoForDoctor() {
     const [isEdited, setIsEdited] = useState(false);
 
     return (
@@ -31,7 +31,7 @@ function PatientInfo() {
     );
 }
 
-export default PatientInfo;
+export default PatientInfoForDoctor;
 
 const MainLayout = styled.div`
   display: flex;

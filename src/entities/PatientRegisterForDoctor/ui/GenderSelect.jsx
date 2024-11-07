@@ -1,10 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import {
+  genderState,
+} from "../../../shared/components/state/PatientRegisterForDoctor";
 
 function GenderSelect() {
-  const [selectedGender, setSelectedGender] = useState(null);
-
+  const [selectedGender, setSelectedGender] = useRecoilState(genderState);
   const handleSelect = (gender) => {
     setSelectedGender(gender);
   };
@@ -16,14 +18,14 @@ function GenderSelect() {
       {/* 성별 선택 버튼 */}
       <SelectWrapper>
         <SelectButton
-          isSelected={selectedGender === "man"}
-          onClick={() => handleSelect("man")}
+          isSelected={selectedGender === "male"}
+          onClick={() => handleSelect("male")}
         >
           🚹
         </SelectButton>
         <SelectButton
-          isSelected={selectedGender === "woman"}
-          onClick={() => handleSelect("woman")}
+          isSelected={selectedGender === "female"}
+          onClick={() => handleSelect("female")}
         >
           🚺 
         </SelectButton>
