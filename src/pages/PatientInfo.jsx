@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from '../assets/image/pyeoning.svg';
 import Table from "../entities/PatientInfo/ui/Table";
@@ -7,28 +7,28 @@ import Title from "../entities/PatientInfo/ui/TItle";
 import Summary from "../entities/PatientInfo/ui/Summary";
 
 function PatientInfo() {
-    const [isEdited, setIsEdited] = useState(false);
+  const [isEdited, setIsEdited] = useState(false);
 
-    return (
-        <MainLayout>
+  return (
+    <MainLayout>
 
-            <LogoWrap>
-                <Logo src={logo} />
-            </LogoWrap>
-            
-            <Title isEdited={isEdited} setIsEdited={setIsEdited} />
-            
-            <Table
-                isEdited={isEdited}
-                setIsEdited={setIsEdited}
-            />
+      <LogoWrap>
+        <Logo src={logo} />
+      </LogoWrap>
 
-            <ChatHistoryButton />
+      <Title isEdited={isEdited} setIsEdited={setIsEdited} />
 
-            <Summary />
-            
-        </MainLayout>
-    );
+      <Table
+        isEdited={isEdited}
+        setIsEdited={setIsEdited}
+      />
+
+      <ChatHistoryButton />
+
+      <Summary />
+
+    </MainLayout>
+  );
 }
 
 export default PatientInfo;
