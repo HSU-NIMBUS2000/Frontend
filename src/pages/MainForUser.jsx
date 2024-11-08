@@ -8,14 +8,26 @@ import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
 // import bunny_doctor from '../assets/model/bunny_doctor.glb';
 import doctor_simi from '../assets/model/doctor_simi.glb';
 import banana_cat from '../assets/model/banana_cat.glb';
+import axios from "axios";
+import { baseUrl } from "../shared/components/base/base";
 
 function MainForUser() {
   const [chattings, setChattings] = useState([]);
   const [avatar, setAvatar] = useState(doctor_simi);
 
-  useEffect(()=>{
-    console.log(avatar)
-  }, [])
+  useEffect(() => {
+    // axios.post('/api/patient/login', {
+    //   patientCode: "1FTDULI3"
+    // })
+    //   .then((response) => {
+    //     const token = response.data.data;
+    //     localStorage.setItem('token', token);
+    //     console.log('Token stored in localStorage:', token);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
+  }, []);
 
   function changeAvatar(n) {
     switch (n) {
