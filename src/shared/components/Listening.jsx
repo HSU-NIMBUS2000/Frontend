@@ -7,7 +7,7 @@ import axios from 'axios';
 import { baseUrl } from './base/base';
 
 function Listening({ chattings, setChattings }) {
-    const { transcript, listening, toggleListening, resetTranscript } = useSpeechToText();
+    const { transcript, listening, toggleListening, resetTranscript, speakText } = useSpeechToText();
 
     return (
         <>
@@ -45,6 +45,8 @@ function Listening({ chattings, setChattings }) {
                                     ...prevChattings,
                                     { type: 'ai', chat: response.data.data.chatContent, date: response.data.data.createdAt }
                                 ]);
+
+                                speakText(response.data.data.chatContent)
                             })
                             .catch(error => {
                                 console.error('Error creating user:', error);

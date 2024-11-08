@@ -16,17 +16,17 @@ function MainForUser() {
   const [avatar, setAvatar] = useState(doctor_simi);
 
   useEffect(() => {
-    // axios.post('/api/patient/login', {
-    //   patientCode: "1FTDULI3"
-    // })
-    //   .then((response) => {
-    //     const token = response.data.data;
-    //     localStorage.setItem('token', token);
-    //     console.log('Token stored in localStorage:', token);
-    //   })
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
+    axios.post('/api/patient/login', {
+      patientCode: "1FTDULI3"
+    })
+      .then((response) => {
+        const token = response.data.data;
+        localStorage.setItem('token', token);
+        console.log('Token stored in localStorage:', token);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   }, []);
 
   function changeAvatar(n) {
