@@ -1,18 +1,18 @@
 import { atom } from 'recoil';
 
 export const nameState = atom({
-    key: 'nameState', // 고유한 키를 설정해야 함
-    default: '김환자', // 초기 상태 값
+    key: 'nameState', 
+    default: '김환자',
 });
 
 export const birthState = atom({
-    key: 'birthState', // 고유한 키를 설정해야 함
-    default: '2000.06.13(22세)', // 초기 상태 값
+    key: 'birthState',
+    default: new Date(2000, 5, 13)
 });
 
 export const diseaseState = atom({
-    key: 'diseaseState', // 고유한 키를 설정해야 함
-    default: '우울장애, 불안장애', // 초기 상태 값
+    key: 'diseaseState',
+    default: '우울장애, 불안장애',
 });
 
 export const promptState = atom({
@@ -21,6 +21,6 @@ export const promptState = atom({
 });
 
 export const remarkState = atom({
-    key: 'remarkState', // 고유한 키를 설정해야 함
+    key: 'remarkState',
     default: '우울증과 불안 때문에 친구들과의 모임이나 직장 회식에 참석하는 것이 매우 부담스러움. 그는 모임에서 자신의 행동이 비판받을까 걱정하며, 사회적 상황에서 불편함을 느껴 불안 증상이 심해짐. 이런 상황을 회피하는 경향이 강하며, 그로 인해 사회적 고립이 더욱 심화되고 있음. 수면 장애를 겪고 있음. 이로 인해 피로감이 심하고, 일상생활에서 에너지가 부족함.업무에서 작은 실수도 용납할 수 없다고 느껴 스트레스를 많이 받음. 이로 인해 일이 지연되기도 하고, 시간이지날수록 불안과 우울감이 더 심해짐.'
 });
