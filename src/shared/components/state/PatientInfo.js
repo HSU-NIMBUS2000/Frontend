@@ -1,13 +1,14 @@
 import { atom } from 'recoil';
 
 export const nameState = atom({
-    key: 'nameState', // 고유한 키를 설정해야 함
-    default: '환자정보가 없습니다', // 초기 상태 값
+
+    key: 'nameState', 
+    default: '김환자',
 });
 
 export const birthState = atom({
-    key: 'birthState', // 고유한 키를 설정해야 함
-    default: '환자정보가 없습니다', // 초기 상태 값
+    key: 'birthState',
+    default: new Date(2000, 5, 13)
 });
 
 export const diseaseState = atom({
