@@ -113,17 +113,21 @@ const StyledDatePicker = styled(DatePicker)`
   border: none;
   font-size: 16px;
   padding: 0px;
+  margin-left: -19px;
+  font-family: none;
 
   &:focus {
     outline: none;
     border: none;
     font-size: 16px; 
     padding: 0px;
+    font-family: none;
   }
 
   &::placeholder {
     font-size: 16px; 
     color: #ccc;
+    font-family: none;
   }
 `;
 
