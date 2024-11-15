@@ -16,7 +16,6 @@ function MyChat({ date, chat }) {
 export default MyChat;
 
 const MainLayout = styled.div`
-  width: 100%;
   padding: 1.2rem 2rem;
   display: flex;
   justify-content: end;
