@@ -1,7 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
+<<<<<<< HEAD:src/entities/PatientInfoForDoctor/ui/Table.jsx
 import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfoForDoctor";
+=======
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { format } from 'date-fns';
+import { ko } from 'date-fns/locale';
+import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfo";
+import axios from "axios";
+>>>>>>> 6f517f312819e9ebb06e0b176b47dc66bc869f4f:src/entities/PatientInfo/ui/Table.jsx
 
 function Table({ isEdited }) {
   const [name, setName] = useRecoilState(nameState);
@@ -9,6 +18,30 @@ function Table({ isEdited }) {
   const [disease, setDisease] = useRecoilState(diseaseState);
   const [remark, setRemark] = useRecoilState(remarkState);
   const [prompt, setPrompt] = useRecoilState(promptState);
+  const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token_tmp = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzEwNDg5MjEsImV4cCI6MTczMTEzNTMyMX0.YEcVzsvWRHIMqcywgtonPbt_tELUywtocgjrlfFLvN8'
+        const response = await axios.get('/api/patient/6/detail', {
+          headers: {
+            'Authorization': `Bearer ${token_tmp}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        console.log('Data received:', response.data);
+        setName(response.data.data.patientName)
+        setBirth(response.data.data.patientBirth)
+        setDisease(response.data.data.patientBirth)
+        setRemark(response.data.data.pyeoningSpecial)
+        setPrompt(response.data.data.pyeoningSpecial)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
 
   return (
     <MainLayout>
@@ -19,7 +52,20 @@ function Table({ isEdited }) {
 
       <Birth><KeyWrap>생년월일</KeyWrap></Birth>
       <BirthValue>
-        <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
+        {isEdited ? (
+          <StyledDatePicker
+            selected={birth}
+            onChange={(date) => setBirth(date)}
+            dateFormat="yyyy년 MM월 dd일"
+            locale={ko}
+            placeholderText="날짜 선택"
+            showYearDropdown
+            yearDropdownItemNumber={100}
+            scrollableYearDropdown
+          />
+        ) : (
+          <span>{formattedBirth}</span>
+        )}
       </BirthValue>
 
       <Birth><KeyWrap>병명</KeyWrap></Birth>
@@ -63,6 +109,31 @@ const AutoResizeTextarea = ({ value, readOnly, onChange }) => {
     />
   );
 };
+
+const StyledDatePicker = styled(DatePicker)`
+  border-radius: 5px;
+  background-color: transparent;
+  text-align: center;
+  border: none;
+  font-size: 16px;
+  padding: 0px;
+  margin-left: -19px;
+  font-family: none;
+
+  &:focus {
+    outline: none;
+    border: none;
+    font-size: 16px; 
+    padding: 0px;
+    font-family: none;
+  }
+
+  &::placeholder {
+    font-size: 16px; 
+    color: #ccc;
+    font-family: none;
+  }
+`;
 
 const MainLayout = styled.div`
   display: grid;
@@ -150,5 +221,6 @@ const ValueInput = styled.textarea`
   }
 
   &:read-only {
+    background: transparent;
   }
 `;
