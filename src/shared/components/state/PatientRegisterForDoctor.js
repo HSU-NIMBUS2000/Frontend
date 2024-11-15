@@ -17,7 +17,7 @@ export const genderState = atom({
 
 export const birthState = atom({
     key: 'birthState_PatientRegisterForDoctor', // 고유한 키를 설정해야 함
-    default: '2000.06.13(22세)', // 초기 상태 값
+    default: '2000.06.13', // 초기 상태 값
 });
 
 export const diseaseState = atom({

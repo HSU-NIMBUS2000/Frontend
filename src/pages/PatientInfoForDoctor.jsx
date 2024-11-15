@@ -3,16 +3,11 @@ import styled from "styled-components";
 import logo from '../assets/image/pyeoning.svg';
 import Table from "../entities/PatientInfoForDoctor/ui/Table";
 import ChatHistoryButton from "../entities/PatientInfoForDoctor/ui/ChatHistoryButton";
-import Title from "../entities/PatientInfoForDoctor/ui/TItle";
+import Title from "../entities/PatientInfoForDoctor/ui/Title";
 import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
 
-<<<<<<< HEAD:src/pages/PatientInfoForDoctor.jsx
 function PatientInfoForDoctor() {
     const [isEdited, setIsEdited] = useState(false);
-=======
-function PatientInfo() {
-  const [isEdited, setIsEdited] = useState(false);
->>>>>>> 6f517f312819e9ebb06e0b176b47dc66bc869f4f:src/pages/PatientInfo.jsx
 
   return (
     <MainLayout>

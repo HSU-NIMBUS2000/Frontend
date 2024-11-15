@@ -16,7 +16,7 @@ function LoginForDoctor() {
       <LoginForm />
 
       {/* 로그인 실패 시 나타나는 문구 */}
-      <LoginWarning />
+      <LoginWarning text="비밀번호가 일치하지 않습니다." />
 
       {/* 의사 로그인 페이지 로그인 폼 제출 버튼 */}
       <LoginSubmitBtn text="로그인하기" type="login"/>

@@ -2,14 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import save from "../../../assets/image/save.svg";
 import edit from "../../../assets/image/edit.svg";
-<<<<<<< HEAD:src/entities/PatientInfoForDoctor/ui/TItle.jsx
-import { useRecoilValue } from "recoil";
-import { nameState } from "../../../shared/components/state/PatientInfoForDoctor";
-=======
+import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfoForDoctor";
 import axios from "axios";
 import { useRecoilState } from "recoil";
-import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfo";
->>>>>>> 6f517f312819e9ebb06e0b176b47dc66bc869f4f:src/entities/PatientInfo/ui/TItle.jsx
 
 function Title({ isEdited, setIsEdited }) {
 

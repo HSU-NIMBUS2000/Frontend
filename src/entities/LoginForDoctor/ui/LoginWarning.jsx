@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-function LoginWarning() {
-  return <WarningText>어떻게 둬야 할지 모르겠음</WarningText>;
+function LoginWarning({text}) {
+  return <WarningText>{text}</WarningText>;
 }
 
 export default LoginWarning;
