@@ -1,16 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-<<<<<<< HEAD:src/entities/PatientInfoForDoctor/ui/Table.jsx
 import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfoForDoctor";
-=======
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfo";
 import axios from "axios";
->>>>>>> 6f517f312819e9ebb06e0b176b47dc66bc869f4f:src/entities/PatientInfo/ui/Table.jsx
 
 function Table({ isEdited }) {
   const [name, setName] = useRecoilState(nameState);
