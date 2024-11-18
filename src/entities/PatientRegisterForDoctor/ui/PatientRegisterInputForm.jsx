@@ -119,16 +119,18 @@ const InfoInputWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 30px 0px 30px;
-  border: 1px solid #6572d2;
+  //border: 1px solid #6572d2;
   border-radius: 3em;
   height: 80px;
+  background-color: rgba(255, 255, 255, 0.6);
 `;
 
 const InfoInput = styled.input`
   border: none;
-  font-size: 15px;
+  font-size: 17px;
   width: 85%;
   outline: none;
+  background-color: transparent;
 `;
 
 const IdCheckButton = styled.button`

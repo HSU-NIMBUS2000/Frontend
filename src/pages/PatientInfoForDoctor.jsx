@@ -37,7 +37,7 @@ const MainLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 280px;
+  padding: 100px 330px;
 
   & > div {
     box-sizing: border-box;
