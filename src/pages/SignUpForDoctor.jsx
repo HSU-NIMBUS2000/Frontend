@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SignUpIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
-import SubmitButton from "../shared/components/ForDoctor/StandardButton";
+import Button from "../entities/SignUpForDoctor/ui/SignUpButton";
 import SignUpForm from "../entities/SignUpForDoctor/ui/SignUpForm";
 
 function SignUpForDoctor() {
@@ -14,7 +14,7 @@ function SignUpForDoctor() {
       <SignUpForm />
 
       {/* 의사 회원가입 페이지 폼 제출 버튼*/}
-      <SubmitButton text="회원가입 하기" type="signUp" />
+      <Button text="회원가입 하기" type="signUp"/>
     </MainLayout>
   );
 }

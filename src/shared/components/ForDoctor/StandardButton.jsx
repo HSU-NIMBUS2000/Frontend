@@ -1,15 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
 
 function StandardButton({ type, text, state }) {
-
   function btnClickHandler(){
     if(type === 'login'){
       // 아이디랑 패스워드 
       // post 로그인 요청
     }else if(type==='signUp'){
       // post 회원가입 요청
+
     }
     
   }

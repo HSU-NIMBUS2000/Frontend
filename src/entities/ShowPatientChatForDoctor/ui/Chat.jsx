@@ -23,9 +23,8 @@ const ChatWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 8px 30px 8px 30px;
-  border: 1px solid #6572d2;
   border-radius: 4em;
-  background-color: ${(props) => (props.isSend ? "#FFFFFF" : "#6572d2")};
+  background-color: ${(props) => (props.isSend ? "rgba(255, 255, 255, 0.7)" : "rgba(101, 114, 210, 0.7)")};
   margin-left: ${(props) => (props.isSend ? "auto" : "0")};
   margin-right: ${(props) => (props.isSend ? "0" : "auto")};
   min-height: 50px;

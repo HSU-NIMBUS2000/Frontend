@@ -18,9 +18,10 @@ function SignUpForm({ isClicked }) {
         isClicked={isClicked}
       />
       <SignUpInputForm
-        formInfo="이메일을 알려주세요"
-        placeholder="이메일"
-        type="email"
+        formInfo="전화번호를 알려주세요"
+        placeholder="전화번호"
+        type="phone"
+        warningSentence="전화는 010-XXXX-XXXX와 같은 형식으로 입력해주세요"
         isClicked={isClicked}
       />
       <SignUpInputForm
