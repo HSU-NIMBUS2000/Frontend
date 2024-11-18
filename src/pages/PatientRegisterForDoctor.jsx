@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PatientRegisterIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
 import PatientRegisterForm from "../entities/PatientRegisterForDoctor/ui/PatientRegisterForm";
-import PatientRegisterBtn from "../shared/components/ForDoctor/StandardButton";
+import PatientRegisterBtn from "../entities/PatientRegisterForDoctor/ui/PatientRegisterButton";
 
 function PatientRegisterForDoctor() {
   return (
@@ -24,6 +24,6 @@ const MainLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 280px 100px 280px;
+  padding: 100px 360px 100px 360px;
   gap: 40px;
 `;

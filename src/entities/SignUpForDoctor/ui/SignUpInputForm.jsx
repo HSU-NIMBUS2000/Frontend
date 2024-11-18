@@ -26,6 +26,9 @@ function SignUpInputForm({
   const [hospital, setHospital] = useRecoilState(hospitalState);
   const [localValue, setLocalValue] = useState(""); // default 값 처리용 로컬 상태
 
+  // 중복 확인
+  const [idCheckMessage, setIdCheckMessage] = useState("");
+
   let inputValue;
   let setInputValue;
 
@@ -55,6 +58,7 @@ function SignUpInputForm({
       setInputValue = setLocalValue;
       break;
   }
+
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
@@ -76,14 +80,44 @@ function SignUpInputForm({
     console.log("type:" + type + " value:" + inputValue);
   };
 
+  const handleIdCheck = async () => {
+    console.log("전송된 doctorId:", doctorId);
+    if (!doctorId) {
+      setIdCheckMessage("의사 면허 번호를 입력하세요.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://15.164.174.64/api/doctor/checkLicense", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ doctorLicense: doctorId }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setIdCheckMessage(data.message || "사용 가능한 면허 번호입니다.");
+      } else {
+        const errorData = await response.json();
+        setIdCheckMessage(errorData.message || "이미 존재하는 번호입니다.");
+      }
+    } catch (error) {
+      console.error("네트워크 오류:", error);
+      setIdCheckMessage("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+    }
+  };
+  
+
   return (
     <MainLayout>
       <FormInfoWrapper>
         <FormInfo>{formInfo}</FormInfo>
-        {/* isSatisfied가 false이고 warningSentence가 있을 때만 경고 문구 표시 */}
-        {!isSatisfied && warningSentence && (
-          <Warning>{warningSentence}</Warning>
-        )}
+        {/* isSatisfied가 false이거나 idCheckMessage가 있을 때 경고 문구 표시 */}
+        {(!isSatisfied && warningSentence) || idCheckMessage ? (
+          <Warning>{idCheckMessage || warningSentence}</Warning>
+        ) : null }
       </FormInfoWrapper>
       <InfoInputWrapper>
         <InfoInput
@@ -93,7 +127,7 @@ function SignUpInputForm({
           onChange={handleInputChange}
         />
         {/* isExistBtn이 true일 때만 중복 확인 버튼 표시 */}
-        {isExistBtn && <IdCheckButton>중복 확인</IdCheckButton>}
+        {isExistBtn && <IdCheckButton onClick={handleIdCheck}>중복 확인</IdCheckButton>}
       </InfoInputWrapper>
     </MainLayout>
   );

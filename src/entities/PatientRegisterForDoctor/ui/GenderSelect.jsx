@@ -18,14 +18,14 @@ function GenderSelect() {
       {/* 성별 선택 버튼 */}
       <SelectWrapper>
         <SelectButton
-          isSelected={selectedGender === "male"}
-          onClick={() => handleSelect("male")}
+          isSelected={selectedGender === "MALE"}
+          onClick={() => handleSelect("MALE")}
         >
           🚹
         </SelectButton>
         <SelectButton
-          isSelected={selectedGender === "female"}
-          onClick={() => handleSelect("female")}
+          isSelected={selectedGender === "FEMALE"}
+          onClick={() => handleSelect("FEMALE")}
         >
           🚺 
         </SelectButton>
@@ -58,8 +58,8 @@ const SelectWrapper = styled.div`
 `;
 
 const SelectButton = styled.button`
-  border: 1px solid #6572d2;
-  background-color: ${({ isSelected }) => (isSelected ? "#6572d2" : "white")};
+  border: 0px solid #6572d2;
+  background-color: ${({ isSelected }) => (isSelected ? "#6572d2" : "rgba(255, 255, 255, 0.6)")};
   border-radius: 3em;
   padding: 15px;
   font-size: 45px;

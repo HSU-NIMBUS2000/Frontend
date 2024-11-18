@@ -25,9 +25,7 @@ function PatientRegisterForm({ isClicked }) {
       />
 
       {/* 성별 선택 폼 */}
-      <GenderSelect
-      
-      />
+      <GenderSelect/>
 
       {/* 병명 입력 폼 */}
       <PatientRegisterInputForm
