@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from '../assets/image/pyeoning.svg';
 import Table from "../entities/PatientInfoForDoctor/ui/Table";
 import ChatHistoryButton from "../entities/PatientInfoForDoctor/ui/ChatHistoryButton";
-import Title from '../entities/PatientInfoForDoctor/ui/TItle'
+import Title from '../entities/PatientInfoForDoctor/ui/Title'
 import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
 
 function PatientInfoForDoctor() {

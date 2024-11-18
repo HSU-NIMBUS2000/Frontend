@@ -50,7 +50,7 @@ export default PatientListForDoctor;
 // `;
 
 const MainLayout = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -61,6 +61,4 @@ const MainLayout = styled.div`
     height: 100%;
     border: none;
   }
-  padding: 100px 330px 100px 330px;
-  gap: 30px;
 `;

@@ -24,10 +24,10 @@ function AppContent() {
 
   const isDoctorPage = doctorPages.includes(location.pathname);
   const appStyle = {
-    background: isDoctorPage ? "linear-gradient(0deg, #CDCEF5 0%, #AED5FF 50%, #CDCEF5 100%)" : "#ffffff", // 의사 페이지에만 다른 배경색 설정
-    minHeight: "100vh", // 페이지 전체를 채우도록 설정
-    padding: "0",
-    margin: "0"
+    //background: isDoctorPage ? "linear-gradient(0deg, #CDCEF5 0%, #AED5FF 50%, #CDCEF5 100%)" : "#ffffff", // 의사 페이지에만 다른 배경색 설정
+    //minHeight: "100vh", // 페이지 전체를 채우도록 설정
+    //padding: "0",
+    //margin: "0"
   };
 
   return (
