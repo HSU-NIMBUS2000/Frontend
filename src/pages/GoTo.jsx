@@ -13,7 +13,6 @@ function GoTo(){
             <GoLink to="/ApplyForUser">6. 환자 : 환자 로그인 페이지</GoLink>
             <GoLink to="/">7. 환자 : 환자 메인 페이지</GoLink>
             <GoLink to="/PatientInfoForDoctor">8. 의사 : 환자 정보 페이지</GoLink>
-            
         </MainLayout>
     );
 }

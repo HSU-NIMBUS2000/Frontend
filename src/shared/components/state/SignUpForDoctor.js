@@ -15,9 +15,9 @@ export const hospitalState = atom({
     default: "펴닝병원",
 });
 
-export const emailState = atom({
-    key: 'emailState_SignUpForDoctor',
-    default: "doctor@p.com",
+export const phoneState = atom({
+    key: 'phoneState_SignUpForDoctor',
+    default: "01012345678",
 });
 
 export const passwordState = atom({

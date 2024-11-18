@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {
   nameState,
   hospitalState,
-  emailState,
+  phoneState,
   doctorIdState,
   passwordState,
 } from "../../../shared/components/state/SignUpForDoctor";
@@ -22,7 +22,7 @@ function SignUpInputForm({
   const [doctorId, setDoctorId] = useRecoilState(doctorIdState);
   const [password, setPassword] = useRecoilState(passwordState);
   const [name, setName] = useRecoilState(nameState);
-  const [email, setEmail] = useRecoilState(emailState);
+  const [phone, setPhone] = useRecoilState(phoneState);
   const [hospital, setHospital] = useRecoilState(hospitalState);
   const [localValue, setLocalValue] = useState(""); // default 값 처리용 로컬 상태
 
@@ -42,9 +42,9 @@ function SignUpInputForm({
       inputValue = name;
       setInputValue = setName;
       break;
-    case "email":
-      inputValue = email;
-      setInputValue = setEmail;
+    case "phone":
+      inputValue = phone;
+      setInputValue = setPhone;
       break;
     case "hospital":
       inputValue = hospital;
@@ -64,9 +64,9 @@ function SignUpInputForm({
       const passwordCriteria =
         /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/;
       setIsSatisfied(passwordCriteria.test(value));
-    } else if (type === "email") {
-      const emailCriteria = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      setIsSatisfied(emailCriteria.test(value));
+    } else if (type === "phone") {
+      const phoneCriteria = /^010-\d{4}-\d{4}$/;
+      setIsSatisfied(phoneCriteria.test(value));    
     } else if (type === "birth") {
       const birthCriteria = /^\d{4}.\d{2}.\d{2}$/;
       setIsSatisfied(birthCriteria.test(value));
@@ -131,9 +131,9 @@ const InfoInputWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 30px;
-  border: 1px solid #6572d2;
   border-radius: 3em;
   height: 80px;
+  background-color: rgba(255, 255, 255, 0.6);
 `;
 
 const InfoInput = styled.input`
@@ -141,6 +141,7 @@ const InfoInput = styled.input`
   font-size: 15px;
   width: 85%;
   outline: none;
+  background:transparent;
 `;
 
 const IdCheckButton = styled.button`

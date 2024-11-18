@@ -21,7 +21,7 @@ const MainLayout = styled.div`
 `;
 const SuggestSignUp = styled.div`
   font-size: 20px;
-  color: #939393;
+  color:  #444444;
 `;
 
 const SingUpLink = styled(Link)`
