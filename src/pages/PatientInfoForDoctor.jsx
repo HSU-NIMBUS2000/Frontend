@@ -3,7 +3,7 @@ import styled from "styled-components";
 import logo from '../assets/image/pyeoning.svg';
 import Table from "../entities/PatientInfoForDoctor/ui/Table";
 import ChatHistoryButton from "../entities/PatientInfoForDoctor/ui/ChatHistoryButton";
-import Title from '../entities/PatientInfoForDoctor/ui/Title'
+import Title from '../entities/PatientInfoForDoctor/ui/TItle'
 import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
 
 function PatientInfoForDoctor() {
@@ -16,14 +16,14 @@ function PatientInfoForDoctor() {
         <Logo src={logo} />
       </LogoWrap>
 
-      <Title isEdited={isEdited} setIsEdited={setIsEdited} />
-
+      {/* <Title isEdited={isEdited} setIsEdited={setIsEdited} /> */}
+{/* 
       <Table
         isEdited={isEdited}
         setIsEdited={setIsEdited}
       />
 
-      <ChatHistoryButton />
+      <ChatHistoryButton /> */}
 
       <Summary />
 
@@ -37,7 +37,6 @@ const MainLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 330px;
 
   & > div {
     box-sizing: border-box;
