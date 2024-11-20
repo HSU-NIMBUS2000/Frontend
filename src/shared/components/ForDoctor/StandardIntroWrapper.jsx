@@ -6,7 +6,7 @@ import Intro from "./StandardIntro";
 function StandardIntroWrapper({ text }) {
   return (
     <MainLayout>
-      <Logo />
+      {/* <Logo /> */}
       <Intro text={text} />
     </MainLayout>
   );

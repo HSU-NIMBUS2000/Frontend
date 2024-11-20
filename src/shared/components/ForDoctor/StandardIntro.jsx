@@ -10,6 +10,6 @@ export default StandardIntro;
 const IntroText = styled.div`
   font-size: 30px;
   font-weight: 600;
-  margin: 50px 0px 0px 0px; // 상우하좌
+  // margin: 50px 0px 0px 0px; // 상우하좌
   text-align: center;
 `;

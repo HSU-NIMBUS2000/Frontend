@@ -45,9 +45,9 @@ function Title({ isEdited, setIsEdited }) {
   return (
     <MainLayout>
       <TitleText>{name}님 관리페이지</TitleText>
-      <EditButton onClick={btnClickHandler}>
+      {/* <EditButton onClick={btnClickHandler}>
         <img src={isEdited ? save : edit} />
-      </EditButton>
+      </EditButton> */}
     </MainLayout>
   );
 }
@@ -58,7 +58,7 @@ const MainLayout = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
 `;
 
 const TitleText = styled.div`

@@ -10,7 +10,7 @@ function Summary (){
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const token_tmp = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzEwNDg5MjEsImV4cCI6MTczMTEzNTMyMX0.YEcVzsvWRHIMqcywgtonPbt_tELUywtocgjrlfFLvN8'
+            const token_tmp = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzIwNzk0MDIsImV4cCI6MTczMjE2NTgwMn0.h0Nad2_6qoFTC2tt6dLZt5T_iN5-ZDND3ac8r8IGXcs'
 
             const response = await axios.get('/api/summary/patientSummary/6', {
               headers: {
@@ -50,7 +50,7 @@ width: 100%;
 padding: 20px 30px;
 border-radius: 16px;
 background-color: #D7E3FF;
-margin-top: 70px;
+// margin-top: 70px;
 box-sizing: border-box;
 `
 

@@ -1,53 +1,69 @@
-import React from "react";
-import styled from "styled-components";
-import { useEffect } from "react";
-import PatientListIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
-import PatientCardList from "../entities/PatientListForDoctor/ui/PatientCardList";
-import SearchBar from "../entities/PatientListForDoctor/ui/SearchBar";
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import styled, { StyleSheetManager } from "styled-components";
+import { RecoilRoot } from "recoil";
+import PatientInfoForDoctor from "./PatientInfoForDoctor";
+import ShowPatientChatForDoctor from "./ShowPatientChatForDoctor"; // 컴포넌트 가져오기
+import PatientRegisterForDoctor from "./PatientRegisterForDoctor";
 
 function PatientListForDoctor() {
-
   useEffect(() => {
-    // iframe이 로드되었을 때 실행
     const iframe = document.querySelector("iframe");
 
-    // iframe이 존재하고, 콘텐츠가 로드되었을 때
     iframe.onload = () => {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-      // iframe 내부에서 React 컴포넌트를 렌더링하려면,
-      // iframe의 body에 test 컴포넌트를 렌더링하는 코드 작성
-      // const testElement = iframeDocument.getElementById("test");
-      // if (testElement) {
-      //   ReactDOM.createRoot(testElement).render(<Test />);
-      // }
+      // summary에 PatientInfoForDoctor 렌더링
+      const summaryElement = iframeDocument.getElementById("summary");
+      if (summaryElement) {
+        const root = ReactDOM.createRoot(summaryElement);
+
+        root.render(
+          <StyleSheetManager target={iframeDocument.head}>
+            <RecoilRoot>
+              <PatientInfoForDoctor />
+            </RecoilRoot>
+          </StyleSheetManager>
+        );
+      }
+
+      
+      const chatElement = iframeDocument.getElementById("chat");
+      if (chatElement) {
+        const chatRoot = ReactDOM.createRoot(chatElement);
+
+        chatRoot.render(
+          <StyleSheetManager target={iframeDocument.head}>
+            <RecoilRoot>
+              <ShowPatientChatForDoctor />
+            </RecoilRoot>
+          </StyleSheetManager>
+        );
+      }
+
+      const addElement = iframeDocument.getElementById("register");
+      if (addElement) {
+        const addRoot = ReactDOM.createRoot(addElement);
+
+        addRoot.render(
+          <StyleSheetManager target={iframeDocument.head}>
+            <RecoilRoot>
+              <PatientRegisterForDoctor />
+            </RecoilRoot>
+          </StyleSheetManager>
+        );
+      }
     };
   }, []);
 
   return (
     <MainLayout>
-      {/* 의사 환자 목록 페이지 인트로 */}
-      {/* <PatientListIntro text="환자 목록" /> */}
-
-      {/* 의사 환자 목록 페이지 검색바 */}
-      {/* <SearchBar /> */}
-
-      {/* 의사 환자 목록 리스트 */}
-      {/* <PatientCardList /> */}
       <iframe src="/template/home.html" title="Embedded Content" />
     </MainLayout>
   );
 }
 
 export default PatientListForDoctor;
-
-// const MainLayout = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   padding: 100px 280px 100px 280px;
-//   gap: 30px;
-// `;
 
 const MainLayout = styled.div`
   width: 100vw;
