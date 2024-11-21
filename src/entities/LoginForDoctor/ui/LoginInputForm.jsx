@@ -91,10 +91,11 @@ const InfoInputWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 30px;
-  //border: 1px solid #6572d2;
   border-radius: 3em;
   height: 80px;
+  width:500px; // 이유는 모르겠으나 이걸 %로 하면 안 먹힘 ㅜㅜ
   background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 `;
 
 const InfoInput = styled.input`

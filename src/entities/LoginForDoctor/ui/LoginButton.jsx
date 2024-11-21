@@ -43,19 +43,22 @@ function LoginButton({text, setErrorMessage}) {
             }
 
     }
-  return <Button onClick={btnClickHandler}>{text}</Button>;
+  return <MainLayout><Button onClick={btnClickHandler}>{text}</Button></MainLayout>;
 }
 
 export default LoginButton;
+
+const MainLayout=styled.div``;
 
 const Button = styled.button`
   background-color: #6572d2;
   color: white;
   border: none;
-  height: 70px;
-  border-radius: 1em;
+  height: 60px;
+  margin-top:30px;
+  border-radius: 2em;
   font-size: 20px;
   font-weight: 600;
-  width: 100%;
+  width: 500px;
   cursor: pointer;
 `;

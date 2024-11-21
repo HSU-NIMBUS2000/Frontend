@@ -17,7 +17,7 @@ const MainLayout = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: -15px;
+  margin-top: 10px;
 `;
 const SuggestSignUp = styled.div`
   font-size: 20px;
