@@ -70,6 +70,7 @@ const InfoInputWrapper = styled.div`
   //border: 1px solid #6572d2;
   border-radius: 3em;
   background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   height: ${({ height }) =>
     height || "80px"}; /* height를 props로 받거나 기본값 80px으로 */
 `;

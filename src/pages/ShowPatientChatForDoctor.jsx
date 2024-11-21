@@ -8,7 +8,7 @@ function ShowPatientChatForDoctor() {
     <MainLayout>
 
     {/* 의사 환자 채팅 내역 조회 페이지 인트로 */}
-      <ShowPatientChatIntro text="ai 의사와 김감자님의 대화 내역" />
+      <ShowPatientChatIntro text="ai 의사와 김환자님의 대화 내역" />
     
     {/* 의사 환자 채팅 내역 폼 */}
     <ChatForm />

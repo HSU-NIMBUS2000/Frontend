@@ -23,7 +23,7 @@ const ChatWrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 30px 25px;
-  border-radius: 60px; /* 둥근 모서리 */
+  border-radius: 80px; /* 둥근 모서리 */
   background: ${(props) =>
     props.isSend
       ? "rgba(255, 255, 255, 0.8)" /* 송신: 밝은 흰색 투명 */
@@ -34,7 +34,7 @@ const ChatWrapper = styled.div`
   margin-left: ${(props) => (props.isSend ? "auto" : "0")}; /* 송신 메시지 위치 */
   margin-right: ${(props) => (props.isSend ? "0" : "auto")}; /* 수신 메시지 위치 */
   min-height: 30px;
-  max-width: 60%;
+  max-width: 70%;
 `;
 
 
@@ -43,7 +43,8 @@ const ChatContent = styled.div`
   font-size: 16px;
   width: 100%;
   outline: none;
-  color: ${(props) => (props.isSend ? "#000000" : "#000000")};
-  font-weight: 500;
+  color: ${(props) => (props.isSend ? "#00000" : "#FFFFFF")};
+  
+  font-weight: 700;
   text-align: ${(props) => (props.isSend ? "right" : "left")};
 `;
