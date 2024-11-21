@@ -58,7 +58,7 @@ const SelectWrapper = styled.div`
 `;
 
 const SelectButton = styled.button`
-  background-color: ${({ isSelected }) => (isSelected ? "#d7e3fe" : "rgba(255, 255, 255, 0.6)")};
+  background-color: ${({ isSelected }) => (isSelected ? "#6f95e6" : "rgba(255, 255, 255, 0.6)")};
   border-radius: 3em;
   padding: 15px;
   font-size: 45px;
@@ -71,6 +71,6 @@ const SelectButton = styled.button`
 
   &:hover {
     background-color: ${({ isSelected }) =>
-      isSelected ? "#d7e3fe" : "#f0f0f0"};
+      isSelected ? "#6f95e6" : "#f0f0f0"};
   }
 `;

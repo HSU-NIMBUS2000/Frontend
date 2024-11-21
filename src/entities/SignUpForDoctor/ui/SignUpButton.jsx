@@ -50,11 +50,11 @@ function SignUpButton({text, state }) {
 export default SignUpButton;
 
 const Button = styled.button`
-  background-color: #6572d2;
+  background-color: #6f95e6;
   color: white;
   border: none;
   height: 70px;
-  border-radius: 1em;
+  border-radius: 3em;
   font-size: 20px;
   font-weight: 600;
   width: 100%;
