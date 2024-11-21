@@ -33,7 +33,7 @@
 						<!-- Me -->
 							<article id="home" class="panel intro">
 								<header>
-									<h1>김환자</h1>
+									<h1 id="patientName"></h1>
 									<p>우울증, 조현병</p>
 								</header>
 								
@@ -94,6 +94,24 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+				// URL의 쿼리 파라미터에서 데이터 읽기
+				const urlParams = new URLSearchParams(window.location.search);
+				const patientData = urlParams.get('data');
+	
+				if (patientData) {
+					// JSON 문자열을 객체로 변환
+					const patient = JSON.parse(decodeURIComponent(patientData));
+					console.log(patient); // patient 객체 출력
+	
+					// patient 객체의 속성을 HTML에 삽입
+					document.getElementById('patientName').textContent = `${patient.patientName}`;
+					// document.getElementById('patientBirth').textContent = `생년월일: ${patient.patientBirth}`;
+					// document.getElementById('patientDisease').textContent = `질병명: ${patient.patientDisease}`;
+				}
+			</script>
+	
 
 	</body>
 </html>
