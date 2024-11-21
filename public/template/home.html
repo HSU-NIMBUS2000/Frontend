@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Astral by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
@@ -22,16 +17,14 @@
     </style>
 </head>
 
-
 <body class="is-preload">
 
-    <!-- Wrapper-->
+    <!-- Wrapper -->
     <div id="wrapper">
 
         <!-- Nav -->
         <nav id="nav">
             <a href="#" class="icon solid fa-list"><span>환자목록</span></a>
-            <!-- <a href="add" class="icon solid fa-home"><span>추가하기</span></a> -->
         </nav>
 
         <!-- Main -->
@@ -40,31 +33,59 @@
             <!-- Me -->
             <article id="home" class="panel intro">
                 <header>
-                    <ul>
-                        <li onclick="navigateToTemplate('이름1')">이름1</li>
-                        <li onclick="navigateToTemplate('이름2')">이름2</li>
-                        <li onclick="navigateToTemplate('이름3')">이름3</li>
-                        <li onclick="navigateToTemplate('이름4')">이름4</li>
-                        <li onclick="navigateToTemplate('이름5')">이름5</li>
-                        <li onclick="navigateToTemplate('이름6')">이름6</li>
-                        <li onclick="navigateToTemplate('이름7')">이름7</li>
-                        <li onclick="navigateToTemplate('이름8')">이름8</li>
-                        <li onclick="navigateToTemplate('이름9')">이름9</li>
-                        <li onclick="navigateToTemplate('이름10')">이름10</li>
+                    <ul id="patientList">
+                        <!-- JavaScript에서 동적으로 추가 -->
                     </ul>
 
                     <script>
-                        function navigateToTemplate(name) {
-                            window.location.href = "template.html?name=" + encodeURIComponent(name);
+                        async function fetchPatientList() {
+                            try {
+                                const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzIxNzE5MDksImV4cCI6MTczMjI1ODMwOX0.5XNxeUu5zvfZny6wkmqjdbn_c_dG2KA_J1vuRPRvMFI";
+
+                                const response = await fetch('/api/patient/list', {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': `Bearer ${token}`, // Authorization 헤더 추가
+                                        'Content-Type': 'application/json'  // JSON 형식 명시
+                                    }
+                                });
+
+                                if (!response.ok) {
+                                    throw new Error(`Failed to fetch patient list: ${response.status}`);
+                                }
+
+                                const data = await response.json(); // JSON 데이터를 파싱
+                                const listElement = document.getElementById('patientList');
+                                console.log(data);
+
+                                // 기존 리스트 초기화
+                                listElement.innerHTML = '';
+
+                                // 데이터를 반복하여 리스트 항목 생성
+                                data.data.forEach(patient => {
+                                    const listItem = document.createElement('li');
+                                    listItem.textContent = patient.patientName; // API에서 제공된 데이터 속성 사용
+                                    listItem.onclick = () => navigateToTemplate(patient); // 객체 전달
+                                    listElement.appendChild(listItem);
+                                });
+                            } catch (error) {
+                                console.error('Error fetching patient list:', error);
+                            }
+                        }
+
+                        // 페이지 로드 시 데이터 가져오기
+                        window.onload = fetchPatientList;
+
+                        function navigateToTemplate(patient) {
+                            // 객체 데이터를 JSON 문자열로 인코딩하여 URL에 추가
+                            const patientData = encodeURIComponent(JSON.stringify(patient));
+                            window.location.href = `template.html?data=${patientData}`;
                         }
                     </script>
                 </header>
-
             </article>
 
         </div>
-
-
 
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
