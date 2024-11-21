@@ -12,20 +12,20 @@ function PatientInfoForDoctor() {
   return (
     <MainLayout>
 
-      <LogoWrap>
+      {/* <LogoWrap>
         <Logo src={logo} />
-      </LogoWrap>
+      </LogoWrap> */}
 
-      {/* <Title isEdited={isEdited} setIsEdited={setIsEdited} /> */}
-{/* 
+      <Title isEdited={isEdited} setIsEdited={setIsEdited} />
+
       <Table
         isEdited={isEdited}
         setIsEdited={setIsEdited}
       />
 
-      <ChatHistoryButton /> */}
+      {/* <ChatHistoryButton /> */}
 
-      <Summary />
+      {/* <Summary /> */}
 
     </MainLayout>
   );

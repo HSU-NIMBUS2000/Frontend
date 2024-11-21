@@ -45,9 +45,9 @@ function Title({ isEdited, setIsEdited }) {
   return (
     <MainLayout>
       <TitleText>{name}님 관리페이지</TitleText>
-      {/* <EditButton onClick={btnClickHandler}>
+      <EditButton onClick={btnClickHandler}>
         <img src={isEdited ? save : edit} />
-      </EditButton> */}
+      </EditButton>
     </MainLayout>
   );
 }
@@ -58,7 +58,7 @@ const MainLayout = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  // margin-bottom: 20px;
+  margin-bottom: 20px;
 `;
 
 const TitleText = styled.div`
@@ -75,5 +75,15 @@ const EditButton = styled.button`
   img {
     width: 24px;
     height: 24px;
+  }
+
+  &:hover {
+    background: none; /* 배경 제거 */
+    outline: none;    /* 외곽선 제거 */
+    box-shadow: none; /* 그림자 제거 */
+  }
+
+  &:focus {
+    outline: none;    /* 포커스 시 외곽선 제거 */
   }
 `;

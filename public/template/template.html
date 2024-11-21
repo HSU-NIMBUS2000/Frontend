@@ -20,9 +20,10 @@
 				<!-- Nav -->
 					<nav id="nav">
 						<a href="#" class="icon solid fa-home"><span>환자 정보</span></a>
-						<a href="#work" class="icon solid fa-folder"><span>요약보고서</span></a>
-						<a href="#contact" class="icon solid fa-envelope"><span>채팅내역</span></a>
-						<a href="#add" class="icon solid fa-envelope"><span>추가하기</span></a>
+						<a href="#work" class="icon solid fa-info"><span>상세정보</span></a>
+						<a href="#summary" class="icon solid fa-file-alt"><span>요약보고서</span></a>
+						<a href="#contact" class="icon solid fa-comment"><span>채팅내역</span></a>
+						<a href="#add" class="icon solid fa-plus"><span>추가하기</span></a>
 						
 					</nav>
 
@@ -35,14 +36,25 @@
 									<h1>김환자</h1>
 									<p>우울증, 조현병</p>
 								</header>
-								<a href="#work" class="jumplink pic">
-									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
-									<img src="images/me.jpg" alt="" />
+								
+								<div id="info"></div>
+								
+								<a href="#work" class="jumplink pic"
+								style="position: absolute; right: 0px"
+								>
+									<span class="arrow icon solid fa-plus"><span>See my work</span></span>
+									<!-- <img src="images/me.jpg" alt="" /> -->
 								</a>
 							</article>
 
-						<!-- Work -->
 							<article id="work" class="panel">
+								<!-- <header>
+									<h2>AI 요약 보고서</h2>
+								</header> -->
+									<div id="infopage"></div>
+							</article>
+						<!-- Work -->
+							<article id="summary" class="panel">
 								<!-- <header>
 									<h2>AI 요약 보고서</h2>
 								</header> -->

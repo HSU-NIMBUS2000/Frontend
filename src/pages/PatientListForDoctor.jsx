@@ -5,6 +5,10 @@ import { RecoilRoot } from "recoil";
 import PatientInfoForDoctor from "./PatientInfoForDoctor";
 import ShowPatientChatForDoctor from "./ShowPatientChatForDoctor"; // 컴포넌트 가져오기
 import PatientRegisterForDoctor from "./PatientRegisterForDoctor";
+import Table from "../entities/PatientInfoForDoctor/ui/Table";
+import NewTable from "../entities/PatientInfoForDoctor/ui/NewTable";
+import Title from "../entities/PatientInfoForDoctor/ui/TItle";
+import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
 
 function PatientListForDoctor() {
   useEffect(() => {
@@ -21,13 +25,13 @@ function PatientListForDoctor() {
         root.render(
           <StyleSheetManager target={iframeDocument.head}>
             <RecoilRoot>
-              <PatientInfoForDoctor />
+              <Summary />
             </RecoilRoot>
           </StyleSheetManager>
         );
       }
 
-      
+
       const chatElement = iframeDocument.getElementById("chat");
       if (chatElement) {
         const chatRoot = ReactDOM.createRoot(chatElement);
@@ -53,6 +57,34 @@ function PatientListForDoctor() {
           </StyleSheetManager>
         );
       }
+
+      const infoElement = iframeDocument.getElementById("info");
+      if (infoElement) {
+        const infoRoot = ReactDOM.createRoot(infoElement);
+
+        infoRoot.render(
+          <StyleSheetManager target={iframeDocument.head}>
+            <RecoilRoot>
+              <NewTable />
+            </RecoilRoot>
+          </StyleSheetManager>
+        );
+      }
+
+      const infopageElement = iframeDocument.getElementById("infopage");
+      if (infopageElement) {
+        const infopageRoot = ReactDOM.createRoot(infopageElement);
+
+        infopageRoot.render(
+          <StyleSheetManager target={iframeDocument.head}>
+            <RecoilRoot>
+              <PatientInfoForDoctor />
+            </RecoilRoot>
+          </StyleSheetManager>
+        );
+      }
+
+
     };
   }, []);
 
