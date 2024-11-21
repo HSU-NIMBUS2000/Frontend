@@ -168,6 +168,7 @@ const InfoInputWrapper = styled.div`
   border-radius: 3em;
   height: 80px;
   background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 `;
 
 const InfoInput = styled.input`
