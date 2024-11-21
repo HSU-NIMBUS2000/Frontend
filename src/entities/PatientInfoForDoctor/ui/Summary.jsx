@@ -49,7 +49,7 @@ const MainLayout = styled.div`
 width: 100%;
 padding: 20px 30px;
 border-radius: 16px;
-background-color: #D7E3FF;
+// background-color: #D7E3FF;
 // margin-top: 70px;
 box-sizing: border-box;
 `
@@ -78,7 +78,7 @@ font-weight: 600;
 const ContentWrap = styled.div`
 width: 100%;
 font-size: 18px;
-border: 2px solid #6572D2;
+// border: 2px solid #6572D2;
 padding: 30px 40px;
 border-radius: 16px;
 line-height: 1.8;
