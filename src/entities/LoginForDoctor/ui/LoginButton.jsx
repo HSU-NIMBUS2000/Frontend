@@ -51,7 +51,7 @@ export default LoginButton;
 const MainLayout=styled.div``;
 
 const Button = styled.button`
-  background-color: #6572d2;
+  background-color:#6f95e6;
   color: white;
   border: none;
   height: 60px;
