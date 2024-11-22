@@ -2,25 +2,25 @@ import { atom } from "recoil";
 
 export const nameState = atom({
     key: 'nameState_SignUpForDoctor', // 고유한 키를 설정해야 함
-    default: '김의사', // 초기 상태 값
+    default: "", // 초기 상태 값
 });
 
 export const doctorIdState = atom({
     key: 'doctorIdState_SignUpForDoctor',
-    default: "12345",
+    default: "",
 });
 
 export const hospitalState = atom({
     key: 'hospitalState_SignUpForDoctor',
-    default: "펴닝병원",
+    default: "",
 });
 
 export const phoneState = atom({
     key: 'phoneState_SignUpForDoctor',
-    default: "01012345678",
+    default: "",
 });
 
 export const passwordState = atom({
     key: 'passwordState_SignUpForDoctor',
-    default: "pyeoning123!",
+    default: "",
 });
