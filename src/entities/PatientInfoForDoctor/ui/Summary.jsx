@@ -10,11 +10,12 @@ function Summary (){
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const token_tmp = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzIwNzk0MDIsImV4cCI6MTczMjE2NTgwMn0.h0Nad2_6qoFTC2tt6dLZt5T_iN5-ZDND3ac8r8IGXcs'
+            const token = localStorage.getItem('doctorToken');
+            const patientId = localStorage.getItem('patientId');
 
-            const response = await axios.get('/api/summary/patientSummary/6', {
+            const response = await axios.get(`/api/summary/patientSummary/${patientId}`, {
               headers: {
-                'Authorization': `Bearer ${token_tmp}`,
+                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
               }
             });

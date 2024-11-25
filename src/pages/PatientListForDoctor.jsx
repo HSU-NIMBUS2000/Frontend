@@ -9,6 +9,7 @@ import Table from "../entities/PatientInfoForDoctor/ui/Table";
 import NewTable from "../entities/PatientInfoForDoctor/ui/NewTable";
 import Title from "../entities/PatientInfoForDoctor/ui/TItle";
 import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
+import Chart from "../entities/PatientInfoForDoctor/ui/Chart";
 
 function PatientListForDoctor() {
   useEffect(() => {
@@ -25,6 +26,7 @@ function PatientListForDoctor() {
         root.render(
           <StyleSheetManager target={iframeDocument.head}>
             <RecoilRoot>
+              <Chart />
               <Summary />
             </RecoilRoot>
           </StyleSheetManager>

@@ -31,7 +31,7 @@
         <div id="main">
 
             <!-- Me -->
-            <article id="home" class="panel intro">
+            <article id="home" class="panel intro" >
                 <header>
                     <ul id="patientList">
                         <!-- JavaScript에서 동적으로 추가 -->
@@ -40,7 +40,10 @@
                     <script>
                         async function fetchPatientList() {
                             try {
-                                const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzIxNzE5MDksImV4cCI6MTczMjI1ODMwOX0.5XNxeUu5zvfZny6wkmqjdbn_c_dG2KA_J1vuRPRvMFI";
+                                const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidXNlcklkIjoiMSIsInJvbGVzIjpbIlJPTEVfRE9DVE9SIl0sImlhdCI6MTczMjUxNTU1OSwiZXhwIjoxNzMyNjAxOTU5fQ.mc3MI4eQwHe2C7FNA0cw7rl-Hf_TmvOJa4FkC3ym-os";
+
+                                localStorage.setItem('doctorToken', token);
+
 
                                 const response = await fetch('/api/patient/list', {
                                     method: 'GET',
@@ -65,7 +68,13 @@
                                 data.data.forEach(patient => {
                                     const listItem = document.createElement('li');
                                     listItem.textContent = patient.patientName; // API에서 제공된 데이터 속성 사용
-                                    listItem.onclick = () => navigateToTemplate(patient); // 객체 전달
+                                    localStorage.setItem('patientId', patient.patientId);
+                                    
+                                    listItem.onclick = () => navigateToTemplate(patient); // 객체 전달    
+                                    
+                                    
+                                    
+
                                     listElement.appendChild(listItem);
                                 });
                             } catch (error) {

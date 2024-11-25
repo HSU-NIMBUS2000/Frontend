@@ -15,29 +15,6 @@ function Table({ isEdited }) {
   const [remark, setRemark] = useRecoilState(remarkState);
   const [prompt, setPrompt] = useRecoilState(promptState);
   const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token_tmp = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzEwNDg5MjEsImV4cCI6MTczMTEzNTMyMX0.YEcVzsvWRHIMqcywgtonPbt_tELUywtocgjrlfFLvN8'
-        const response = await axios.get('/api/patient/6/detail', {
-          headers: {
-            'Authorization': `Bearer ${token_tmp}`,
-            'Content-Type': 'application/json'
-          }
-        });
-        console.log('Data received:', response.data);
-        setName(response.data.data.patientName)
-        setBirth(response.data.data.patientBirth)
-        setDisease(response.data.data.patientBirth)
-        setRemark(response.data.data.pyeoningSpecial)
-        setPrompt(response.data.data.pyeoningSpecial)
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, [])
 
   return (
     <MainLayout>

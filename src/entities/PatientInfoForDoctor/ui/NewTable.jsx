@@ -15,14 +15,16 @@ function NewTable(isEdited) {
     const [disease, setDisease] = useRecoilState(diseaseState);
     const [remark, setRemark] = useRecoilState(remarkState);
     const [prompt, setPrompt] = useRecoilState(promptState);
+    
     const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const token_tmp = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJ1c2VySWQiOiIxMTEiLCJyb2xlcyI6WyJST0xFX0RPQ1RPUiJdLCJpYXQiOjE3MzEwNDg5MjEsImV4cCI6MTczMTEzNTMyMX0.YEcVzsvWRHIMqcywgtonPbt_tELUywtocgjrlfFLvN8'
-                const response = await axios.get('/api/patient/6/detail', {
+                const token = localStorage.getItem('doctorToken');
+                const patientId = localStorage.getItem('patientId');
+                const response = await axios.get(`/api/patient/${patientId}/detail`, {
                     headers: {
-                        'Authorization': `Bearer ${token_tmp}`,
+                        'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 });
