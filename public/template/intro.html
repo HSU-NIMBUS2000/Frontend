@@ -5,44 +5,98 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Astral by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper-->
-			<div id="wrapper">
+<head>
+	<title>Astral by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Nav -->
-					<nav id="nav">
-						<a href="#" class="icon solid fa-home"><span>로그인</span></a>
-						<a href="#add" class="icon solid fa-plus"><span>회원가입</span></a>
-						
-					</nav>
+<body class="is-preload">
 
-					<div id="main">
-						<article id="home" class="panel">
-							<div id="loginForDoctor"></div>
-						</article>
+	<!-- Wrapper-->
+	<div id="wrapper">
 
-						<article id="add" class="panel">
-							<div id="signUpForDoctor"></div>				
-						</article>
+		<!-- Nav -->
+		<nav id="nav">
+			<a href="#" class="icon solid fa-edit"><span>로그인</span></a>
+			<a href="#add" class="icon solid fa-user-check"><span>회원가입</span></a>
 
-					</div>
+		</nav>
 
-			</div>
+		<div id="main">
+			<article id="home" class="panel">
+				<h2>로그인</h2>
+				<form id="loginForm">
+					<input type="text" id="doctorId" placeholder="의사 아이디" required />
+					<input type="password" id="password" placeholder="비밀번호" required />
+					<button type="button" id="loginButton">로그인</button>
+				</form>
+				<p id="errorMessage" style="color: red; display: none;">로그인 실패</p>
+			</article>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<article id="add" class="panel">
+				<div id="signUpForDoctor"></div>
+			</article>
 
-	</body>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		document.getElementById("loginButton").addEventListener("click", async () => {
+		  const doctorId = document.getElementById("doctorId").value;
+		  const password = document.getElementById("password").value;
+		  const errorMessage = document.getElementById("errorMessage");
+	
+		  const requestData = {
+			doctorLicense: doctorId,
+			doctorPassword: password,
+		  };
+	
+		  try {
+			const response = await fetch("http://15.164.174.64/api/doctor/login", {
+			  method: "POST",
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			  body: JSON.stringify(requestData),
+			});
+	
+			if (response.ok) {
+			  const responseData = await response.json();
+			  console.log("로그인 성공:", responseData);
+	
+			  // 토큰을 세션에 저장
+			  sessionStorage.setItem("accessToken", responseData.data.accessToken);
+	
+			  // home.html로 이동
+			  window.location.href = "home.html";
+			} else {
+			  const errorData = await response.json();
+			  console.error("로그인 실패:", response.status, errorData.message);
+	
+			  // 에러 메시지 표시
+			  errorMessage.textContent = errorData.message || "로그인에 실패했습니다.";
+			  errorMessage.style.display = "block";
+			}
+		  } catch (error) {
+			console.error("네트워크 오류:", error);
+			alert("네트워크 오류입니다. 관리자에게 문의하세요");
+		  }
+		});
+	  </script>
+
+</body>
+
 </html>

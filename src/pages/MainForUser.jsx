@@ -1,33 +1,101 @@
-import React, { useState, Suspense, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import styled from "styled-components";
 import Chatting from "../entities/MainForUser/Chatting";
-import Listening from '../shared/components/Listening';
+import Listening from "../shared/components/Listening";
 import Avatar from "../entities/MainForUser/Avatar";
 import Logo from "../entities/MainForUser/Logo";
 import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
-// import bunny_doctor from '../assets/model/bunny_doctor.glb';
-import doctor_simi from '../assets/model/doctor_simi.glb';
-import banana_cat from '../assets/model/banana_cat.glb';
+import doctor_simi from "../assets/model/doctor_simi.glb";
+import banana_cat from "../assets/model/banana_cat.glb";
 import axios from "axios";
-import { baseUrl } from "../shared/components/base/base";
 
 function MainForUser() {
   const [chattings, setChattings] = useState([]);
   const [avatar, setAvatar] = useState(doctor_simi);
-
   useEffect(() => {
-    axios.post('/api/patient/login', {
-      patientCode: "1FTDULI3"
-    })
+    // 초기 로그인 요청
+    axios.post("/api/patient/login", { patientCode: "JVDOO2UB" })
       .then((response) => {
         const token = response.data.data;
-        localStorage.setItem('token', token);
-        console.log('Token stored in localStorage:', token);
+        localStorage.setItem("token", token);
+        console.log("Token stored in localStorage:", token);
       })
       .catch((error) => {
-        console.error('Error:', error);
+        console.error("Error:", error);
       });
+
+    // 세션 종료 시 POST 요청 설정
+    const handleBeforeUnload = () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const payload = JSON.stringify({ token });
+
+        if (chattings.length > 1) {
+
+          // 첫 번째 요청
+          navigator.sendBeacon("/api/chat/endSession", payload);
+
+          // 두 번째 요청
+
+          navigator.sendBeacon("/api/summary/create", payload);
+          // window.localStorage.setItem("res", 'summary called')
+        }
+
+      }
+    };
+
+    // 이벤트 등록
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      // 이벤트 해제
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
+
+
+  // useEffect(() => {
+  //   // 초기 로그인 요청
+  //   axios.post('/api/patient/login', {
+  //     patientCode: "JVDOO2UB"
+  //   })
+  //     .then((response) => {
+  //       const token = response.data.data;
+  //       localStorage.setItem('token', token);
+  //       console.log('Token stored in localStorage:', token);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+
+  //   // 세션 종료 시 POST 요청 설정
+  //   const handleBeforeUnload = async () => {
+  //     const token = localStorage.getItem('token');
+  //     if (token) {
+  //       try {
+  //         // 첫 번째 API 호출
+  //         await axios.post('/api/chat/endSession', {
+  //           token: token,
+  //         });
+
+  //         // 성공적으로 완료되면 두 번째 API 호출
+  //         await axios.post('/api/summary/create', {
+  //           token: token,
+  //         });
+  //       } catch (error) {
+  //         console.error('Error during API calls:', error);
+  //       }
+  //     }
+  //   };
+
+  //   // 이벤트 등록
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   return () => {
+  //     // 이벤트 해제
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   function changeAvatar(n) {
     switch (n) {
