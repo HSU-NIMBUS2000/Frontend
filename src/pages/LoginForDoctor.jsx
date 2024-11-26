@@ -80,7 +80,7 @@ function LoginForDoctor() {
     <LoginForDoctorLayout>
       <LoginIntro text="의사 계정으로 로그인하기" />
       <LoginForm />
-      <LoginSubmitBtn text="로그인하기" />
+      {/* <LoginSubmitBtn text="로그인하기" /> */}
     </LoginForDoctorLayout>
   );
 }

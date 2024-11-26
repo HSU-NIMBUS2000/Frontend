@@ -31,7 +31,7 @@ function LoginButton({text, setErrorMessage}) {
                 sessionStorage.setItem("accessToken", responseData.data.accessToken);
                 
                 // 다른 화면으로 이동
-                navigate("/GoTo");
+                navigate("/PatientListForDoctor");
               } else {
                   const errorData = await response.json();
                   console.error("로그인 실패:", response.status, errorData.message);
