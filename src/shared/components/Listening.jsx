@@ -28,7 +28,7 @@ function Listening({ chattings, setChattings }) {
                             const data = {
                                 "chatContent": transcript
                             };
-                            const token = localStorage.getItem('token');
+                            const token = localStorage.getItem('patientToken');
                             
                             axios.post(`/api/chat/send`, data, {
                                 headers: {

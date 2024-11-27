@@ -10,19 +10,44 @@ function Input() {
         setCode(e.target.value);
     };
 
-    const handleKeyPress = (e) => {
+    // handleKeyPress를 비동기 함수로 변경
+    const handleKeyPress = async (e) => {
         if (e.key === 'Enter') {
-            if (isValidCode(code)) { // 유효성 검사 함수 호출
-                navigate('/'); // 메인 페이지로 이동
+            const isValid = await isValidCode(code); // 유효성 검사 결과를 기다림
+            if (isValid) {
+                navigate('/MainForUser'); // 메인 페이지로 이동
             } else {
                 alert("유효하지 않은 코드입니다."); // 유효하지 않은 경우 알림 표시
             }
         }
     };
 
-    const isValidCode = (inputCode) => {
-        // 여기에 실제 코드 유효성 검사를 추가합니다 (예: 정규 표현식 또는 코드 확인 로직)
-        return inputCode === "pyeoning"; // 예시로 코드가 "123456"인 경우만 유효하다고 가정
+    const isValidCode = async (inputCode) => {
+        try {
+            const response = await fetch('/api/patient/login', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json" // JSON 형식 명시
+                },
+                body: JSON.stringify({ patientCode: inputCode }) // JSON 문자열로 변환
+            });
+
+            if (response.ok) { // 응답 상태가 200-299일 때
+                const data = await response.json(); // JSON 응답 데이터 파싱
+                if (data?.data) {
+                    localStorage.setItem("patientToken", data.data); // 토큰 저장
+                    console.log("로그인 성공")
+                    return true; // 유효한 코드
+                }
+            } else if (response.status === 404) {
+                console.error("유효하지 않은 접속코드입니다.");
+            } else {
+                console.error(`서버 오류: ${response.status}`);
+            }
+        } catch (error) {
+            console.error("네트워크 오류:", error.message);
+        }
+        return false; // 유효하지 않은 코드
     };
 
     return (
