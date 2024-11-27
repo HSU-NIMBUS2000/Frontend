@@ -21,17 +21,48 @@ function MainForUser() {
 
         if (chattings.length > 1) {
 
+
+      const handleBeforeUnload = () => {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const payload = new Blob(
+            [JSON.stringify({ token: token })],
+            { type: "application/json" }
+          );
+          
           // 첫 번째 요청
-          navigator.sendBeacon("/api/chat/endSession", payload);
-
+          if (!navigator.sendBeacon("/api/chat/endSession", payload)) {
+            console.error("Failed to send /api/chat/endSession");
+          }
+      
           // 두 번째 요청
-
-          navigator.sendBeacon("/api/summary/create", payload);
-          // window.localStorage.setItem("res", 'summary called')
+          if (!navigator.sendBeacon("/api/summary/create", payload)) {
+            console.error("Failed to send /api/summary/create");
+          }
         }
+      };
 
-      }
-    };
+    // 세션 종료 시 POST 요청 설정
+    // const handleBeforeUnload = () => {
+    //   const token = localStorage.getItem("token");
+    //   if (token) {
+    //     // JSON 데이터 구성
+    //     const payload = new Blob(
+    //       [JSON.stringify({ token: token })],
+    //       { type: "application/json" }
+    //     );
+    
+    //     // if (chattings.length > 1) {
+    //       // 첫 번째 요청
+    //       navigator.sendBeacon("/api/chat/endSession", payload);
+    //       window.localStorage.setItem("res", "EndsoSession");
+    
+    //       // 두 번째 요청
+    //       navigator.sendBeacon("/api/summary/create", payload);
+    //       window.localStorage.setItem("res", "summary called");
+    //     // }
+    //   }
+    // };
 
     // 이벤트 등록
     window.addEventListener("beforeunload", handleBeforeUnload);
