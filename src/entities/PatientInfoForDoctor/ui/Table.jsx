@@ -17,13 +17,12 @@ function Table({ isEdited }) {
   const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
 
   useEffect(() => {
-    setName(localStorage.getItem('patientName'));
-    setBirth(localStorage.getItem('patientBirth'));
-    setDisease(localStorage.getItem('pyeoningDisease'));
-    setPrompt(localStorage.getItem('pyeoningPrompt'));
-    setRemark(localStorage.getItem('pyeoningSpecial'));
-
-  }, [])
+    setName(localStorage.getItem('patientName') || "이름 없음");
+    setBirth(localStorage.getItem('patientBirth') || "생년월일 없음");
+    setDisease(localStorage.getItem('pyeoningDisease') || "병명 없음");
+    setPrompt(localStorage.getItem('pyeoningPrompt') || "프롬프트 없음");
+    setRemark(localStorage.getItem('pyeoningSpecial') || "특이사항 없음");
+  }, []);
 
   return (
     <MainLayout>
@@ -36,6 +35,7 @@ function Table({ isEdited }) {
       <Birth><KeyWrap>생년월일</KeyWrap></Birth>
       <BirthValue>
         <BirthInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
+        {/* <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
       </BirthValue>
 
       {/* <BirthValue>
@@ -58,16 +58,19 @@ function Table({ isEdited }) {
       <Birth><KeyWrap>병명</KeyWrap></Birth>
       <BirthValue>
         <TextInput value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} />
+        {/* <AutoResizeTextarea value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} /> */}
       </BirthValue>
 
       <Birth><KeyWrap>프롬프트</KeyWrap></Birth>
       <BirthValue>
         <TextInput value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} />
+        {/* <AutoResizeTextarea value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} /> */}
       </BirthValue>
 
       <Remark><KeyWrap>특이사항</KeyWrap></Remark>
       <RemarkValue>
         <TextInput value={remark} readOnly={!isEdited} onChange={(e) => setRemark(e.target.value)} />
+        {/* <AutoResizeTextarea value={remark} readOnly={!isEdited} onChange={(e) => setRemark(e.target.value)} /> */}
       </RemarkValue>
     </MainLayout>
   );
@@ -75,13 +78,15 @@ function Table({ isEdited }) {
 
 export default Table;
 
-const AutoResizeTextarea = ({ value, readOnly, onChange }) => {
+const AutoResizeTextarea = ({ value = "", readOnly, onChange }) => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      requestAnimationFrame(() => {
+        textareaRef.current.style.height = "auto";
+        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      });
     }
   }, [value]);
 
@@ -89,13 +94,36 @@ const AutoResizeTextarea = ({ value, readOnly, onChange }) => {
     <ValueInput
       as="textarea"
       ref={textareaRef}
-      value={value}
+      value={value || ""} // 기본값 보장
       readOnly={readOnly}
       onChange={onChange}
       rows={1}
     />
   );
 };
+
+const ValueInput = styled.textarea`
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  font-size: 16px;
+  color: #000;
+  resize: none;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  overflow: hidden;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:read-only {
+    background: transparent;
+  }
+`;
+
+
 
 const StyledDatePicker = styled(DatePicker)`
   border-radius: 5px;
@@ -189,31 +217,32 @@ const RemarkValue = styled.div`
   border-top: 1px solid #6572d2;
 `;
 
-const ValueInput = styled.textarea`
-  width: 100%;
-  border: none;
-  background: transparent;
-  text-align: left;
-  font-size: 16px;
-  color: inherit;
-  resize: none;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
-  overflow: hidden;
+// const ValueInput = styled.textarea`
+//   width: 100%;
+//   border: none;
+//   background: transparent;
+//   text-align: left;
+//   font-size: 16px;
+//   color: inherit;
+//   resize: none;
+//   white-space: pre-wrap;
+//   overflow-wrap: break-word;
+//   overflow: hidden;
 
-  &:focus {
-    outline: none;
-  }
+//   &:focus {
+//     outline: none;
+//   }
 
-  &:read-only {
-    background: transparent;
-  }
-`;
+//   &:read-only {
+//     background: transparent;
+//   }
+// `;
 
 const TextInput = styled.input`
+width: 100%;
 outline: none;
 border: none;
-width: 100%:
+
 `
 
 const BirthValue = styled.div`
