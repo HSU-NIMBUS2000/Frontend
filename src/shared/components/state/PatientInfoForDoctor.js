@@ -5,9 +5,14 @@ export const nameState = atom({
     default: '김환자', // 초기 상태 값
 });
 
+// export const birthState = atom({
+//     key: 'birthState_PatientInfoForDoctor', // 고유한 키를 설정해야 함
+//     default: new Date(2000, 5, 13)
+// });
+
 export const birthState = atom({
     key: 'birthState_PatientInfoForDoctor', // 고유한 키를 설정해야 함
-    default: new Date(2000, 5, 13)
+    default: ''
 });
 
 export const genderState = atom({
