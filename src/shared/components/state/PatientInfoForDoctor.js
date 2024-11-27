@@ -10,6 +10,11 @@ export const birthState = atom({
     default: new Date(2000, 5, 13)
 });
 
+export const genderState = atom({
+    key: 'genderState_PatientInfoForDoctor', // 고유한 키를 설정해야 함
+    default: '',
+});
+
 export const diseaseState = atom({
     key: 'diseaseState_PatientInfoForDoctor', // 고유한 키를 설정해야 함
     default: '환자정보가 없습니다', 

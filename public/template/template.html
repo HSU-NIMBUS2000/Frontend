@@ -34,7 +34,7 @@
 							<article id="home" class="panel intro">
 								<header>
 									<h1 id="patientName"></h1>
-									<p>우울증, 조현병</p>
+									<p id="pyeoningDisease"></p>
 								</header>
 								
 								<div id="info"></div>
@@ -104,9 +104,18 @@
 					// JSON 문자열을 객체로 변환
 					const patient = JSON.parse(decodeURIComponent(patientData));
 					console.log(patient); // patient 객체 출력
+					localStorage.setItem('patientId', patient.patientId);
+					localStorage.setItem('patientName', patient.patientName);
+    				localStorage.setItem('patientGender', patient.patientGender);
+    				localStorage.setItem('patientBirth', patient.patientBirth);
+    				localStorage.setItem('patientAge', patient.patientAge);
+					localStorage.setItem('pyeoningSpecial', patient.pyeoningSpecial);
+					localStorage.setItem('pyeoningDisease', patient.pyeoningDisease);
+					localStorage.setItem('pyeoningPrompt', patient.pyeoningPrompt);
 	
 					// patient 객체의 속성을 HTML에 삽입
 					document.getElementById('patientName').textContent = `${patient.patientName}`;
+					document.getElementById('pyeoningDisease').textContent=`${patient.pyeoningDisease}`
 					// document.getElementById('patientBirth').textContent = `생년월일: ${patient.patientBirth}`;
 					// document.getElementById('patientDisease').textContent = `질병명: ${patient.patientDisease}`;
 				}
