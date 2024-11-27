@@ -13,16 +13,13 @@ function MainForUser() {
   const [chattings, setChattings] = useState([]);
   const [avatar, setAvatar] = useState(doctor_simi);
   useEffect(() => {
-    // 초기 로그인 요청
-    axios.post("/api/patient/login", { patientCode: "JVDOO2UB" })
-      .then((response) => {
-        const token = response.data.data;
-        localStorage.setItem("token", token);
-        console.log("Token stored in localStorage:", token);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    // 세션 종료 시 POST 요청 설정
+    const handleBeforeUnload = () => {
+      const token = localStorage.getItem("patientToken");
+      if (token) {
+        const payload = JSON.stringify({ token });
+
+        if (chattings.length > 1) {
 
 
       const handleBeforeUnload = () => {

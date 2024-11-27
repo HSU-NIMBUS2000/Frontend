@@ -180,7 +180,6 @@ const NameValue = styled.div`
   border-top-right-radius: 10px;
   border-left: 1px solid #6572d2;
   border-bottom: 1px solid #6572d2;
-
 `;
 
 const Birth = styled.div`
