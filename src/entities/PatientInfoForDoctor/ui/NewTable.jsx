@@ -28,10 +28,11 @@ function NewTable(isEdited) {
                         'Content-Type': 'application/json'
                     }
                 });
-                console.log('Data received:', response.data);
+                console.log('여기서 받은 데이터:', response.data);
                 setName(localStorage.getItem('patientName'))
                 setBirth(localStorage.getItem('patientBirth'))
                 setDisease(localStorage.getItem('pyeoningDisease'))
+                setGender(localStorage.getItem('genderState'))
                 setRemark(localStorage.getItem('pyeoningSpecial'))
                 setPrompt(localStorage.getItem('pyeoningPrompt'))
                 setGender(localStorage.getItem('patientGender'))
