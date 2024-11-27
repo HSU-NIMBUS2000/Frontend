@@ -17,7 +17,6 @@ function PatientListForDoctor() {
 
     iframe.onload = () => {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
       // summary에 PatientInfoForDoctor 렌더링
       const summaryElement = iframeDocument.getElementById("summary");
       if (summaryElement) {
@@ -35,13 +34,14 @@ function PatientListForDoctor() {
 
 
       const chatElement = iframeDocument.getElementById("chat");
+      const patientId=localStorage.getItem('patientId');
       if (chatElement) {
         const chatRoot = ReactDOM.createRoot(chatElement);
 
         chatRoot.render(
           <StyleSheetManager target={iframeDocument.head}>
             <RecoilRoot>
-              <ShowPatientChatForDoctor />
+              <ShowPatientChatForDoctor patientId={patientId} />
             </RecoilRoot>
           </StyleSheetManager>
         );

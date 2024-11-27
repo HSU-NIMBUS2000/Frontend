@@ -4,7 +4,6 @@ import styled from "styled-components"
 import axios from "axios";
 
 function Summary (){
-
     const [content, setContent] = useState('')
 
     useEffect(() => {
@@ -20,7 +19,7 @@ function Summary (){
               }
             });
             console.log('Data received:', response.data.data);
-            setContent(response.data.data.summaryContent);
+            setContent(response.data.data[0].summaryContent);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -37,7 +36,10 @@ function Summary (){
                 </TitleWrap>
                 
                 <ContentWrap>
-                {content}
+
+                  {content}
+
+                
                 </ContentWrap>
             </SubLayout>
         </MainLayout>
@@ -77,6 +79,11 @@ font-weight: 600;
 `
 
 const ContentWrap = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+`
+const Content = styled.div`
 width: 100%;
 font-size: 18px;
 // border: 2px solid #6572D2;
