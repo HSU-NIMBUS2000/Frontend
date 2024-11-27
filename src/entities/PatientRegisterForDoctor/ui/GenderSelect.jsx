@@ -55,6 +55,7 @@ const SelectWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10%;
+  
 `;
 
 const SelectButton = styled.button`
@@ -66,7 +67,7 @@ const SelectButton = styled.button`
   width: 45%;
   height: 80px;
   cursor: pointer;
-
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, color 0.3s;
 
   &:hover {
