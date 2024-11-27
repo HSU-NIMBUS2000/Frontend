@@ -69,7 +69,10 @@
                                     listItem.textContent = patient.patientName; // API에서 제공된 데이터 속성 사용
                                     localStorage.setItem('patientId', patient.patientId);
                                     
-                                    listItem.onclick = () => navigateToTemplate(patient); // 객체 전달    
+                                    listItem.onclick = () => {
+                                        localStorage.setItem('patientId', patient.patientId);
+                                        navigateToTemplate(patient); // 객체 전달 
+                                    }   
                                     
                                     
                                     

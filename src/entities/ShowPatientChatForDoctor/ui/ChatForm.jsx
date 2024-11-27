@@ -4,14 +4,17 @@ import Chat from "./Chat";
 
 function ChatForm({patientId, isDoctor }) {
     const [chats, setChats] = useState([]);
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
 
     const fetchChatHistory = async () => {
         if (isLoading || !hasMore) return;
         const token=localStorage.getItem('doctorToken');
-        
+        console.log("Received patientId:", patientId);
+        console.log("Fetching chat history with URL:", `http://15.164.174.64/api/chat/history/doctor?patientId=${patientId}&page=${page}&size=10`);
+        console.log("token : ", token);
+
         setIsLoading(true);
         try {
             const response = await fetch(`http://15.164.174.64/api/chat/history/doctor?patientId=${patientId}&page=${page}&size=10`, {
@@ -45,7 +48,9 @@ function ChatForm({patientId, isDoctor }) {
     };
 
     useEffect(() => {
+        console.log("Initializing chat history fetch...");
         fetchChatHistory();
+        
     }, []);
 
     return (
