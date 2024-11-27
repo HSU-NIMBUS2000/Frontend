@@ -16,15 +16,29 @@ function Table({ isEdited }) {
   const [prompt, setPrompt] = useRecoilState(promptState);
   const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
 
+  useEffect(() => {
+    setName(localStorage.getItem('patientName'));
+    setBirth(localStorage.getItem('patientBirth'));
+    setDisease(localStorage.getItem('pyeoningDisease'));
+    setPrompt(localStorage.getItem('pyeoningPrompt'));
+    setRemark(localStorage.getItem('pyeoningSpecial'));
+
+  }, [])
+
   return (
     <MainLayout>
       <Name><KeyWrap>이름</KeyWrap></Name>
       <NameValue>
-        <AutoResizeTextarea value={name} readOnly={!isEdited} onChange={(e) => setName(e.target.value)} />
+        <TextInput value={name} readOnly={!isEdited} onChange={(e) => setName(e.target.value)} />
+        {/* <AutoResizeTextarea value={name} readOnly={!isEdited} onChange={(e) => setName(e.target.value)} /> */}
       </NameValue>
 
       <Birth><KeyWrap>생년월일</KeyWrap></Birth>
       <BirthValue>
+        <BirthInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
+      </BirthValue>
+
+      {/* <BirthValue>
         {isEdited ? (
           <StyledDatePicker
             selected={birth}
@@ -39,21 +53,21 @@ function Table({ isEdited }) {
         ) : (
           <span>{formattedBirth}</span>
         )}
-      </BirthValue>
+      </BirthValue> */}
 
       <Birth><KeyWrap>병명</KeyWrap></Birth>
       <BirthValue>
-        <AutoResizeTextarea value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} />
+        <TextInput value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} />
       </BirthValue>
 
       <Birth><KeyWrap>프롬프트</KeyWrap></Birth>
       <BirthValue>
-        <AutoResizeTextarea value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} />
+        <TextInput value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} />
       </BirthValue>
 
       <Remark><KeyWrap>특이사항</KeyWrap></Remark>
       <RemarkValue>
-        <AutoResizeTextarea value={remark} readOnly={!isEdited} onChange={(e) => setRemark(e.target.value)} />
+        <TextInput value={remark} readOnly={!isEdited} onChange={(e) => setRemark(e.target.value)} />
       </RemarkValue>
     </MainLayout>
   );
@@ -135,10 +149,10 @@ const KeyWrap = styled.div`
 const NameValue = styled.div`
   border: 2px solid #6572d2;
   padding: 20px;
-  text-align: center;
   border-top-right-radius: 10px;
   border-left: 1px solid #6572d2;
   border-bottom: 1px solid #6572d2;
+
 `;
 
 const Birth = styled.div`
@@ -150,11 +164,11 @@ const Birth = styled.div`
   padding: 20px;
 `;
 
-const BirthValue = styled.div`
-  border: 1px solid #6572d2;
-  border-right: 2px solid #6572d2;
-  padding: 20px;
-`;
+// const BirthValue = styled.div`
+//   border: 1px solid #6572d2;
+//   border-right: 2px solid #6572d2;
+//   padding: 20px;
+// `;
 
 const Remark = styled.div`
   display: flex;
@@ -171,7 +185,6 @@ const Remark = styled.div`
 const RemarkValue = styled.div`
   border: 2px solid #6572d2;
   padding: 20px;
-  text-align: center;
   border-bottom-right-radius: 10px;
   border-left: 1px solid #6572d2;
   border-top: 1px solid #6572d2;
@@ -197,3 +210,22 @@ const ValueInput = styled.textarea`
     background: transparent;
   }
 `;
+
+const TextInput = styled.input`
+outline: none;
+border: none;
+width: 100%:
+`
+
+const BirthValue = styled.div`
+border: 1px solid #6572d2;
+  padding: 20px;
+  border-right: 2px solid #6572d2;
+`
+
+const BirthInput = styled.input`
+outline: none;
+border: none;
+// border: 1px solid #6572d2;
+// border-right: 2px solid #6572d2
+`
