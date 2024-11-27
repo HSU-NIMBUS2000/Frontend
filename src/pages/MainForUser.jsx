@@ -30,17 +30,16 @@ function MainForUser() {
       if (token) {
         const payload = JSON.stringify({ token });
 
-        if (chattings.length > 1) {
+        // if (chattings.length > 1) {
 
           // 첫 번째 요청
           navigator.sendBeacon("/api/chat/endSession", payload);
+          window.localStorage.setItem("res", 'EndsoSession')
 
           // 두 번째 요청
-
           navigator.sendBeacon("/api/summary/create", payload);
-          // window.localStorage.setItem("res", 'summary called')
-        }
-
+          window.localStorage.setItem("res", 'summary called')
+        // }
       }
     };
 
