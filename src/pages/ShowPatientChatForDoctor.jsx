@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ShowPatientChatIntro from "../shared/components/ForDoctor/StandardIntroWrapper";
 import ChatForm from "../entities/ShowPatientChatForDoctor/ui/ChatForm";
 
-function ShowPatientChatForDoctor({patientId}) {
+function ShowPatientChatForDoctor() {
   return (
     <MainLayout>
 
@@ -11,7 +11,7 @@ function ShowPatientChatForDoctor({patientId}) {
       <ShowPatientChatIntro text="ai 의사와 환자의 대화 내역" />
     
     {/* 의사 환자 채팅 내역 폼 */}
-    <ChatForm patientId={patientId} />
+    <ChatForm />
 
     </MainLayout>
   );

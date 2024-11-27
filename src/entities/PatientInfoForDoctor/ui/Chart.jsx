@@ -1,31 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-
-const data = [
-    { name: '', 위험도: 2, 우울감: 3, 분노: 2, 뭐시기: 1, 저시기: 4 },
-    { name: '11/16', 위험도: 3, 우울감: 1, 분노: 1, 뭐시기: 2, 저시기: 3 },
-    { name: '11/17', 위험도: 1, 우울감: 4, 분노: 3, 뭐시기: 1, 저시기: 2 },
-    { name: '11/18', 위험도: 4, 우울감: 2, 분노: 1, 뭐시기: 5, 저시기: 3 },
-    { name: '11/19', 위험도: 2, 우울감: 3, 분노: 4, 뭐시기: 2, 저시기: 5 },
-    { name: '11/20', 위험도: 3, 우울감: 3, 분노: 4, 뭐시기: 2, 저시기: 5 },
-    { name: '11/21', 위험도: 5, 우울감: 3, 분노: 4, 뭐시기: 2, 저시기: 5 },
-    { name: '11/22', 위험도: 4, 우울감: 3, 분노: 4, 뭐시기: 2, 저시기: 5 },
-    { name: '최근 대화', 위험도: 4, 우울감: 3, 분노: 4, 뭐시기: 2, 저시기: 5 },
-
-];
+import axios from 'axios';
 
 // 커스텀 툴팁 컴포넌트
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
-        const { 우울감, 분노, 뭐시기, 저시기 } = payload[0].payload;
+        const { 위험도, 설명 } = payload[0].payload;
         return (
             <TooltipContainer>
-                <p style={{margin: '-5px'}}>{`일자: ${label}`}</p>
-                <p style={{margin: '-5px'}}>{`우울감: ${우울감}`}</p>
-                <p style={{margin: '-5px'}}>{`분노: ${분노}`}</p>
-                <p style={{margin: '-5px'}}>{`뭐시기: ${뭐시기}`}</p>
-                <p style={{margin: '-5px'}}>{`저시기: ${저시기}`}</p>
+                <p style={{ margin: '-5px' }}>{`일자: ${label}`}</p>
+                <p style={{ margin: '-5px' }}>{`위험도: ${위험도}`}</p>
+                <p style={{ margin: '-5px' }}>{`설명: ${설명}`}</p>
             </TooltipContainer>
         );
     }
@@ -33,12 +19,60 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export default function Chart() {
+    const [chartData, setChartData] = useState([]);
+
+    useEffect(() => {
+        const fetchRiskLevelData = async () => {
+            try {
+                const patientId = localStorage.getItem('patientId');
+                const token = localStorage.getItem('doctorToken');
+
+                const response = await axios.get(`/api/patient/${patientId}/riskLevels`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                if (response.status !== 200) {
+                    console.error(`API 호출 실패: ${response.status} ${response.statusText}`);
+                    return;
+                }
+
+                const result = response.data;
+
+                if (result?.data) {
+                    const formattedData = result.data.map((item) => ({
+                        name: item.createdAt, // 날짜
+                        위험도: item.riskLevel, // 위험도
+                        설명: item.description, // 설명
+                    }));
+                    setChartData(formattedData);
+                } else {
+                    console.error("유효하지 않은 데이터 형식:", result);
+                }
+            } catch (error) {
+                if (error.response) {
+                    console.error(`서버 응답 오류: ${error.response.status} ${error.response.statusText}`);
+                } else if (error.request) {
+                    console.error('요청이 서버에 도달하지 못했습니다.', error.request);
+                } else {
+                    console.error('요청 설정 중 오류:', error.message);
+                }
+            }
+            
+        };
+
+        // 데이터 가져오기
+        fetchRiskLevelData();
+    }, []);
+
     return (
         <MainLayout>
             <TitleWrap>
-                    <Title>위험도 그래프</Title>
-                </TitleWrap>
-            <LineChart width={800} height={500} data={data}>
+                <Title>위험도 그래프</Title>
+            </TitleWrap>
+            <LineChart width={800} height={500} data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" tick={{ fontSize: 18, fontWeight: 'bold' }} />
                 <YAxis tick={{ fontSize: 18, fontWeight: 'bold' }} domain={[0, 5]} ticks={[0, 1, 2, 3, 4, 5]} />
@@ -67,14 +101,14 @@ const TooltipContainer = styled.div`
 `;
 
 const TitleWrap = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-margin-bottom: 30px;
-box-sizing: border-box;
-`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+`;
 
 const Title = styled.div`
-font-size: 36px;
-font-weight: 600;
-`
+    font-size: 36px;
+    font-weight: 600;
+`;
