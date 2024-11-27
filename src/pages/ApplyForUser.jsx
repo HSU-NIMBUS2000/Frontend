@@ -27,6 +27,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
+background: linear-gradient(135deg, #FFDEAD, #FFD1DC, #E5CCDA);
 
 `
 

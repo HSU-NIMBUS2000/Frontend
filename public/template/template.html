@@ -96,30 +96,69 @@
 			<script src="assets/js/main.js"></script>
 
 			<script>
-				// URL의 쿼리 파라미터에서 데이터 읽기
-				const urlParams = new URLSearchParams(window.location.search);
-				const patientData = urlParams.get('data');
-	
-				if (patientData) {
-					// JSON 문자열을 객체로 변환
-					const patient = JSON.parse(decodeURIComponent(patientData));
-					console.log(patient); // patient 객체 출력
-					localStorage.setItem('patientId', patient.patientId);
-					localStorage.setItem('patientName', patient.patientName);
-    				localStorage.setItem('patientGender', patient.patientGender);
-    				localStorage.setItem('patientBirth', patient.patientBirth);
-    				localStorage.setItem('patientAge', patient.patientAge);
-					localStorage.setItem('pyeoningSpecial', patient.pyeoningSpecial);
-					localStorage.setItem('pyeoningDisease', patient.pyeoningDisease);
-					localStorage.setItem('pyeoningPrompt', patient.pyeoningPrompt);
-	
-					// patient 객체의 속성을 HTML에 삽입
-					document.getElementById('patientName').textContent = `${patient.patientName}`;
-					document.getElementById('pyeoningDisease').textContent=`${patient.pyeoningDisease}`
-					// document.getElementById('patientBirth').textContent = `생년월일: ${patient.patientBirth}`;
-					// document.getElementById('patientDisease').textContent = `질병명: ${patient.patientDisease}`;
+				// 특정 환자의 상세 정보를 가져오는 함수
+				async function fetchPatientDetail(patientId) {
+					try {
+						// 의사 인증 토큰 가져오기
+						const token = localStorage.getItem('doctorToken');
+						if (!token) {
+							alert("의사 인증 토큰이 없습니다. 다시 로그인해주세요.");
+							return;
+						}
+			
+						// API 요청 보내기
+						const response = await fetch(`/api/patient/${patientId}/detail`, {
+							method: 'GET',
+							headers: {
+								'Authorization': `Bearer ${token}`,
+								'Content-Type': 'application/json'
+							}
+						});
+			
+						// 응답 처리
+						if (response.ok) {
+							const data = await response.json();
+							console.log("환자 상세 정보:", data);
+			
+							if (data.data) {
+								// 로컬 스토리지에 데이터 저장
+								localStorage.setItem('patientId', data.data.patientId);
+								localStorage.setItem('patientName', data.data.patientName);
+								localStorage.setItem('patientGender', data.data.patientGender);
+								localStorage.setItem('patientBirth', data.data.patientBirth);
+								localStorage.setItem('pyeoningDisease', data.data.pyeoningDisease);
+								localStorage.setItem('pyeoningPrompt', data.data.pyeoningPrompt);
+								localStorage.setItem('pyeoningSpecial', data.data.pyeoningSpecial);
+			
+								// 화면에 데이터 반영
+								document.getElementById('patientName').textContent = data.data.patientName || '이름 없음';
+								document.getElementById('pyeoningDisease').textContent = data.data.pyeoningDisease || '병명 없음';
+							} else {
+								alert(data.message || "환자 정보를 가져올 수 없습니다.");
+							}
+						} else {
+							const errorData = await response.json();
+							console.error("오류 발생:", errorData);
+							alert(errorData.message || "환자 정보를 가져오는 데 실패했습니다.");
+						}
+					} catch (error) {
+						console.error("통신 오류:", error);
+						alert("서버와의 통신 중 오류가 발생했습니다.");
+					}
 				}
+			
+				// 페이지 로드 시 데이터 가져오기
+				window.onload = () => {
+					// 로컬 스토리지에서 환자 ID 가져오기
+					const patientId = localStorage.getItem('patientId');
+					if (patientId) {
+						fetchPatientDetail(patientId); // 환자 상세 정보 요청
+					} else {
+						alert("환자 ID가 없습니다.");
+					}
+				};
 			</script>
+			
 	
 
 	</body>
