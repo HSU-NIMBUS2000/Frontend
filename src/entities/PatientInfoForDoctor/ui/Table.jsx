@@ -212,9 +212,10 @@ const ValueInput = styled.textarea`
 `;
 
 const TextInput = styled.input`
+width: 100%;
 outline: none;
 border: none;
-width: 100%:
+
 `
 
 const BirthValue = styled.div`
