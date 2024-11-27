@@ -15,11 +15,12 @@ function PatientRegisterButton({text, state }) {
   async function btnClickHandler(){
     // 생년월일 '.'을 '-'으로 변경
     const formattedBirth = (birth.replace(/\./g, '-'));
+    const formattedGender=(gender.toUpperCase());
 
     const requestData = {
             patientName: name,
             patientBirth : formattedBirth,
-            patientGender : gender,
+            patientGender : formattedGender,
             patientEmail : email,
             pyeoningDisease: disease,
             pyeoningPrompt: prompt,
@@ -29,7 +30,7 @@ function PatientRegisterButton({text, state }) {
       console.log("requestData 내용:", requestData);
 
 
-      const token=sessionStorage.getItem('accessToken');
+      const token=localStorage.getItem('doctorToken');
   
       try {
         const response = await fetch("http://15.164.174.64/api/patient/registration", {

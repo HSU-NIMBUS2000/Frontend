@@ -49,7 +49,7 @@ function PatientRegisterForm({ isClicked }) {
         formInfo="환자 특이사항을 입력해주세요"
         placeholder="특이사항을 입력해주세요"
         type="remark"
-        height={280}
+        height={150}
         isClicked={isClicked}
       />
 
@@ -58,7 +58,7 @@ function PatientRegisterForm({ isClicked }) {
         formInfo="환자 맞춤형 프롬프트를 입력해주세요"
         placeholder="프롬프트를 입력해주세요"
         type="prompt"
-        height={280}
+        height={150}
         isClicked={isClicked}
       />
 

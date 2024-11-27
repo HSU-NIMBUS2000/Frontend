@@ -40,11 +40,10 @@
                     <script>
                         async function fetchPatientList() {
                             try {
-                                const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidXNlcklkIjoiMSIsInJvbGVzIjpbIlJPTEVfRE9DVE9SIl0sImlhdCI6MTczMjUxNTU1OSwiZXhwIjoxNzMyNjAxOTU5fQ.mc3MI4eQwHe2C7FNA0cw7rl-Hf_TmvOJa4FkC3ym-os";
+                                //const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwidXNlcklkIjoiMSIsInJvbGVzIjpbIlJPTEVfRE9DVE9SIl0sImlhdCI6MTczMjUxNTU1OSwiZXhwIjoxNzMyNjAxOTU5fQ.mc3MI4eQwHe2C7FNA0cw7rl-Hf_TmvOJa4FkC3ym-os";
 
-                                localStorage.setItem('doctorToken', token);
-
-
+                                //localStorage.setItem('doctorToken', token);
+                                const token = localStorage.getItem('doctorToken');
                                 const response = await fetch('/api/patient/list', {
                                     method: 'GET',
                                     headers: {

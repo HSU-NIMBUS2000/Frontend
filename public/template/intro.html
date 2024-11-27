@@ -14,6 +14,61 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<style>
+		#loginText{
+			font-size: 30px;
+  			font-weight: 600;
+  			text-align: center;
+			margin-bottom: 30px;
+		}
+
+		#doctorId{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0px 30px;
+			border-radius: 3em;
+			height: 80px;
+			background-color: rgba(255, 255, 255, 0.6);
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+			font-size:15px;
+			font-weight:400;
+			margin-bottom: 10px;
+		}
+
+		#password{
+			display: flex;
+  			align-items: center;
+  			justify-content: space-between;
+  			padding: 0px 30px;
+  			border-radius: 3em;
+  			height: 80px;
+  			background-color: rgba(255, 255, 255, 0.6);
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+			font-size:15px;
+			font-weight:400;
+		}
+
+		#loginButton {
+			background-color:#6f95e6;
+			color: white;
+			border: none;
+			height: 60px;
+			margin-top:50px;
+			border-radius: 2em;
+			font-size: 20px;
+			font-weight: 600;
+			width: 100%;
+			cursor: pointer;
+		}
+
+		#errorMessage{
+			display:flex;
+			align-items: center;
+			text-align: center;
+			font-weight: 450;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -30,11 +85,11 @@
 
 		<div id="main">
 			<article id="home" class="panel">
-				<h2>로그인</h2>
+				<div id="loginText">의사 계정으로 로그인하기</div>
 				<form id="loginForm">
 					<input type="text" id="doctorId" placeholder="의사 아이디" required />
 					<input type="password" id="password" placeholder="비밀번호" required />
-					<button type="button" id="loginButton">로그인</button>
+					<button type="button" id="loginButton">로그인하기</button>
 				</form>
 				<p id="errorMessage" style="color: red; display: none;">로그인 실패</p>
 			</article>
@@ -75,13 +130,12 @@
 	
 			if (response.ok) {
 			  const responseData = await response.json();
-			  console.log("로그인 성공:", responseData);
 	
 			  // 토큰을 세션에 저장
-			  sessionStorage.setItem("accessToken", responseData.data.accessToken);
-	
+			  localStorage.setItem("doctorToken", responseData.data);
 			  // home.html로 이동
-			  window.location.href = "home.html";
+			  //window.location.href = "home.html";
+			  window.location.href="/PatientListForDoctor";
 			} else {
 			  const errorData = await response.json();
 			  console.error("로그인 실패:", response.status, errorData.message);
