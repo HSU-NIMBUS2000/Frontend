@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 import { useRecoilState } from "recoil";
-import { nameState, birthState, diseaseState, remarkState, promptState } from "../../../shared/components/state/PatientInfoForDoctor";
+import { nameState, birthState, diseaseState, remarkState, promptState, genderState } from "../../../shared/components/state/PatientInfoForDoctor";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
@@ -9,11 +9,11 @@ import { ko } from 'date-fns/locale';
 import axios from "axios";
 
 function NewTable(isEdited) {
-
     const [name, setName] = useRecoilState(nameState);
     const [birth, setBirth] = useRecoilState(birthState);
     const [disease, setDisease] = useRecoilState(diseaseState);
     const [remark, setRemark] = useRecoilState(remarkState);
+    const [gender, setGender]= useRecoilState(genderState);
     const [prompt, setPrompt] = useRecoilState(promptState);
     
     const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
@@ -29,11 +29,12 @@ function NewTable(isEdited) {
                     }
                 });
                 console.log('Data received:', response.data);
-                setName(response.data.data.patientName)
-                setBirth(response.data.data.patientBirth)
-                setDisease(response.data.data.patientBirth)
-                setRemark(response.data.data.pyeoningSpecial)
-                setPrompt(response.data.data.pyeoningSpecial)
+                setName(localStorage.getItem('patientName'))
+                setBirth(localStorage.getItem('patientBirth'))
+                setDisease(localStorage.getItem('pyeoningDisease'))
+                setRemark(localStorage.getItem('pyeoningSpecial'))
+                setPrompt(localStorage.getItem('pyeoningPrompt'))
+                setGender(localStorage.getItem('patientGender'))
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -66,7 +67,7 @@ function NewTable(isEdited) {
 
             <FlexBox>
                 <Title>성별</Title>
-                <AutoResizeTextarea value={name} readOnly={!isEdited} onChange={(e) => setName(e.target.value)} />
+                <AutoResizeTextarea value={gender} readOnly={!isEdited} onChange={(e) => setName(e.target.value)} />
             </FlexBox>
 
             <FlexBox>
@@ -109,9 +110,10 @@ font-weight: 400;
 `
 
 const BirthValue = styled.div`
-  width: 350px; /* 원하는 고정 너비 */
+ margin-left:45px;
+  width: 400px; /* 원하는 고정 너비 */
   white-space: nowrap; /* 줄 바꿈 방지 */
-  overflow: hidden; /* 넘치는 텍스트 숨김 */
+  //overflow: hidden; /* 넘치는 텍스트 숨김 */
   text-overflow: ellipsis; /* 말줄임 표시 */
   display: inline-block; /* 텍스트가 처음부터 보이도록 inline-block 설정 */
 `;
