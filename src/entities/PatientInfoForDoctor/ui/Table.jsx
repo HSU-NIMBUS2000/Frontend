@@ -34,7 +34,7 @@ function Table({ isEdited }) {
 
       <Birth><KeyWrap>생년월일</KeyWrap></Birth>
       <BirthValue>
-        <BirthInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
+        {/* <BirthInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
         {/* <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
       </BirthValue>
 
