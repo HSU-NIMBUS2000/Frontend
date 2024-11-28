@@ -12,6 +12,7 @@ import MainInput from "../shared/components/MainInput/MainInput";
 function MainForUser() {
   const [chattings, setChattings] = useState([]);
   const [avatar, setAvatar] = useState(doctor_simi);
+  const [value, setValue] = useState('');
 
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -65,7 +66,7 @@ function MainForUser() {
         <ToggleSwitch changeAvatar={changeAvatar} />
       </ToggleSwitchWrap>
       <MainInputWrap>
-        <MainInput />
+        <MainInput value={value} setValue={setValue} chattings={chattings} setChattings={setChattings}/>
       </MainInputWrap>
 
     </MainLayout>
