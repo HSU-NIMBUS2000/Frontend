@@ -7,6 +7,7 @@ import Logo from "../entities/MainForUser/Logo";
 import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
 import doctor_simi from "../assets/model/doctor_simi.glb";
 import banana_cat from "../assets/model/banana_cat.glb";
+import MainInput from "../shared/components/MainInput/MainInput";
 
 function MainForUser() {
   const [chattings, setChattings] = useState([]);
@@ -63,6 +64,10 @@ function MainForUser() {
       <ToggleSwitchWrap>
         <ToggleSwitch changeAvatar={changeAvatar} />
       </ToggleSwitchWrap>
+      <MainInputWrap>
+        <MainInput />
+      </MainInputWrap>
+
     </MainLayout>
   );
 }
@@ -84,3 +89,10 @@ const ToggleSwitchWrap = styled.div`
   transform: translateX(-50%);
   z-index: 999;
 `;
+
+const MainInputWrap = styled.div`
+width: 250px;
+position: absolute;
+bottom: 150px;
+right: 140px;
+`
