@@ -19,12 +19,12 @@
 
 				<!-- Nav -->
 					<nav id="nav">
-						<a href="#" class="icon solid fa-home"><span>환자 정보</span></a>
+						<a href="#" class="icon solid fa-arrow-left backBtn"><span>뒤로가기</span></a>
+						<a href="#home" class="icon solid fa-home active"><span>환자 정보</span></a>
 						<a href="#work" class="icon solid fa-info"><span>상세정보</span></a>
 						<a href="#summary" class="icon solid fa-file-alt"><span>요약보고서</span></a>
 						<a href="#contact" class="icon solid fa-comment"><span>채팅내역</span></a>
 						<a href="#add" class="icon solid fa-plus"><span>추가하기</span></a>
-						
 					</nav>
 
 				<!-- Main -->
@@ -157,6 +157,13 @@
 						alert("환자 ID가 없습니다.");
 					}
 				};
+
+				// 뒤로가기 버튼에 대한 이벤트 리스너 추가
+				document.querySelector('.backBtn').addEventListener('click', function(e) {
+					e.preventDefault();
+					e.stopPropagation(); // 이벤트 전파 중지
+					window.location.href = '/PatientListForDoctor';
+				});
 			</script>
 			
 	
