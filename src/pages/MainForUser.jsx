@@ -7,123 +7,42 @@ import Logo from "../entities/MainForUser/Logo";
 import ToggleSwitch from "../shared/components/ToggleSwitch/ToggleSwitch";
 import doctor_simi from "../assets/model/doctor_simi.glb";
 import banana_cat from "../assets/model/banana_cat.glb";
-import axios from "axios";
 
 function MainForUser() {
   const [chattings, setChattings] = useState([]);
   const [avatar, setAvatar] = useState(doctor_simi);
+
   useEffect(() => {
-    // 세션 종료 시 POST 요청 설정
     const handleBeforeUnload = () => {
       const token = localStorage.getItem("patientToken");
-      if (token) {
-        const payload = JSON.stringify({ token });
+      if (token && chattings.length > 1) {
+        const payload = new Blob([JSON.stringify({ token })], { type: "application/json" });
 
-        if (chattings.length > 1) {
-
-
-      const handleBeforeUnload = () => {
-        const token = localStorage.getItem("token");
-        if (token) {
-          const payload = new Blob(
-            [JSON.stringify({ token: token })],
-            { type: "application/json" }
-          );
-          
-          // 첫 번째 요청
-          if (!navigator.sendBeacon("/api/chat/endSession", payload)) {
-            console.error("Failed to send /api/chat/endSession");
-          }
-      
-          // 두 번째 요청
-          if (!navigator.sendBeacon("/api/summary/create", payload)) {
-            console.error("Failed to send /api/summary/create");
-          }
+        // Send session end request
+        if (!navigator.sendBeacon("/api/chat/endSession", payload)) {
+          console.error("Failed to send /api/chat/endSession");
         }
-      };
 
-    // 세션 종료 시 POST 요청 설정
-    // const handleBeforeUnload = () => {
-    //   const token = localStorage.getItem("token");
-    //   if (token) {
-    //     // JSON 데이터 구성
-    //     const payload = new Blob(
-    //       [JSON.stringify({ token: token })],
-    //       { type: "application/json" }
-    //     );
-    
-    //     // if (chattings.length > 1) {
-    //       // 첫 번째 요청
-    //       navigator.sendBeacon("/api/chat/endSession", payload);
-    //       window.localStorage.setItem("res", "EndsoSession");
-    
-    //       // 두 번째 요청
-    //       navigator.sendBeacon("/api/summary/create", payload);
-    //       window.localStorage.setItem("res", "summary called");
-    //     // }
-    //   }
-    // };
+        // Send summary creation request
+        if (!navigator.sendBeacon("/api/summary/create", payload)) {
+          console.error("Failed to send /api/summary/create");
+        }
+      }
+    };
 
-    // 이벤트 등록
+    // Add event listener for beforeunload
     window.addEventListener("beforeunload", handleBeforeUnload);
 
+    // Cleanup event listener on component unmount
     return () => {
-      // 이벤트 해제
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, []);
+  }, [chattings]);
 
-
-  // useEffect(() => {
-  //   // 초기 로그인 요청
-  //   axios.post('/api/patient/login', {
-  //     patientCode: "JVDOO2UB"
-  //   })
-  //     .then((response) => {
-  //       const token = response.data.data;
-  //       localStorage.setItem('token', token);
-  //       console.log('Token stored in localStorage:', token);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error:', error);
-  //     });
-
-  //   // 세션 종료 시 POST 요청 설정
-  //   const handleBeforeUnload = async () => {
-  //     const token = localStorage.getItem('token');
-  //     if (token) {
-  //       try {
-  //         // 첫 번째 API 호출
-  //         await axios.post('/api/chat/endSession', {
-  //           token: token,
-  //         });
-
-  //         // 성공적으로 완료되면 두 번째 API 호출
-  //         await axios.post('/api/summary/create', {
-  //           token: token,
-  //         });
-  //       } catch (error) {
-  //         console.error('Error during API calls:', error);
-  //       }
-  //     }
-  //   };
-
-  //   // 이벤트 등록
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //   return () => {
-  //     // 이벤트 해제
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //   };
-  // }, []);
-
-  function changeAvatar(n) {
+  const changeAvatar = (n) => {
     switch (n) {
       case 0:
         setAvatar(doctor_simi);
-        break;
-      case 1:
-        // setAvatar(bunny_doctor);
         break;
       case 2:
         setAvatar(banana_cat);
@@ -131,7 +50,7 @@ function MainForUser() {
       default:
         break;
     }
-  }
+  };
 
   return (
     <MainLayout>
