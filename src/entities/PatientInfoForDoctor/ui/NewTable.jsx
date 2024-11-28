@@ -1,125 +1,123 @@
-import React, { useEffect, useRef } from "react"
-import styled from "styled-components"
+import React, { useEffect, useRef } from "react";
+import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { nameState, birthState, diseaseState, remarkState, promptState, genderState } from "../../../shared/components/state/PatientInfoForDoctor";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import axios from "axios";
 
-function NewTable(isEdited) {
-    const [name, setName] = useRecoilState(nameState);
-    const [birth, setBirth] = useRecoilState(birthState);
-    const [disease, setDisease] = useRecoilState(diseaseState);
-    const [remark, setRemark] = useRecoilState(remarkState);
-    const [gender, setGender]= useRecoilState(genderState);
-    const [prompt, setPrompt] = useRecoilState(promptState);
-    
-    const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const token = localStorage.getItem('doctorToken');
-                const patientId = localStorage.getItem('patientId');
-                const response = await axios.get(`/api/patient/${patientId}/detail`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
-                console.log('여기서 받은 데이터:', response.data);
-                setName(localStorage.getItem('patientName'))
-                setBirth(localStorage.getItem('patientBirth'))
-                setDisease(localStorage.getItem('pyeoningDisease'))
-                setGender(localStorage.getItem('genderState'))
-                setRemark(localStorage.getItem('pyeoningSpecial'))
-                setPrompt(localStorage.getItem('pyeoningPrompt'))
-                setGender(localStorage.getItem('patientGender'))
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+function NewTable({ isEdited }) {
+  const [name, setName] = useRecoilState(nameState);
+  const [birth, setBirth] = useRecoilState(birthState);
+  const [disease, setDisease] = useRecoilState(diseaseState);
+  const [remark, setRemark] = useRecoilState(remarkState);
+  const [gender, setGender] = useRecoilState(genderState);
+  const [prompt, setPrompt] = useRecoilState(promptState);
 
-        fetchData();
-    }, [])
+  const formattedBirth = birth ? format(birth, 'yyyy년 MM월 dd일', { locale: ko }) : "";
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('doctorToken');
+        const patientId = localStorage.getItem('patientId');
+        const response = await axios.get(`/api/patient/${patientId}/detail`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        setName(localStorage.getItem('patientName'));
+        setBirth(localStorage.getItem('patientBirth'));
+        setDisease(localStorage.getItem('pyeoningDisease'));
+        setGender(localStorage.getItem('genderState'));
+        setRemark(localStorage.getItem('pyeoningSpecial'));
+        setPrompt(localStorage.getItem('pyeoningPrompt'));
+        setGender(localStorage.getItem('patientGender'));
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-    return (
-        <MainLayout>
-            <FlexBox>
-                <Title>생년월일</Title>
-                {/* <BirthValue>
-        {isEdited ? (
-          <StyledDatePicker
-            selected={birth}
-            onChange={(date) => setBirth(date)}
-            dateFormat="yyyy년 MM월 dd일"
-            locale={ko}
-            placeholderText="날짜 선택"
-            showYearDropdown
-            yearDropdownItemNumber={100}
-            scrollableYearDropdown
-          />
-        ) : (
-          <span>{formattedBirth}</span>
-        )}
-      </BirthValue> */}
-      <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
-            </FlexBox>
+    fetchData();
+  }, []);
 
-            <FlexBox>
-                <Title>성별</Title>
-                <AutoResizeTextarea value={gender} readOnly={!isEdited} onChange={(e) => setName(e.target.value)} />
-            </FlexBox>
+  return (
+    <MainLayout>
+      <FlexBox height="30px">
+        <Title>생년월일</Title>
+        <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
+      </FlexBox>
 
-            <FlexBox>
-                <Title>병명</Title>
-                <AutoResizeTextarea value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} />
-            </FlexBox>
+      <FlexBox height="30px">
+        <Title>성별</Title>
+        <AutoResizeTextarea value={gender} readOnly={!isEdited} onChange={(e) => setGender(e.target.value)} />
+      </FlexBox>
 
-            <FlexBox>
-                <Title>프롬프트</Title>
-                <AutoResizeTextarea value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} />
-            </FlexBox>
+      <FlexBox height="30px">
+        <Title>병명</Title>
+        <AutoResizeTextarea value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} />
+      </FlexBox>
 
-            <FlexBox>
-                <Title>특이사항</Title>
-                <AutoResizeTextarea value={remark} readOnly={!isEdited} onChange={(e) => setRemark(e.target.value)} />
-            </FlexBox>
-        </MainLayout>
-    )
+      <FlexBox height="130px">
+        <Title>프롬프트</Title>
+        <AutoResizeTextarea value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} />
+      </FlexBox>
+
+      <FlexBox height="30px">
+        <Title>특이사항</Title>
+        <AutoResizeTextarea value={remark} readOnly={!isEdited} onChange={(e) => setRemark(e.target.value)} />
+      </FlexBox>
+    </MainLayout>
+  );
 }
+
 export default NewTable;
 
 const MainLayout = styled.div`
-width: 350px;
-padding-right: 30px;
-`
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding-right: 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+`;
 
 const FlexBox = styled.div`
-display: flex;
-margin-bottom: 10px;
-`
+  display: flex;
+  margin: 5px;
+  height: ${(props) => props.height || "50px"};
+  width: 550px;
+`;
 
 const Title = styled.div`
-width: 100%;
-color: black;
-font-weight: 400;
-font-size:22px;
-`
-
-const Value = styled.div`
-font-weight: 400;
-`
-
-const BirthValue = styled.div`
- margin-left:45px;
-  width: 400px; /* 원하는 고정 너비 */
-  white-space: nowrap; /* 줄 바꿈 방지 */
-  //overflow: hidden; /* 넘치는 텍스트 숨김 */
-  text-overflow: ellipsis; /* 말줄임 표시 */
-  display: inline-block; /* 텍스트가 처음부터 보이도록 inline-block 설정 */
+  width: 30%;
+  color: black;
+  font-weight: 400;
+  font-size: 22px;
 `;
+
+const AutoResizeTextarea = ({ value, readOnly, onChange }) => {
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"; 
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; 
+    }
+  }, [value]);
+
+  return (
+    <ValueInput
+      ref={textareaRef}
+      value={value}
+      readOnly={readOnly}
+      onChange={onChange}
+      rows={1}
+    />
+  );
+};
 
 const ValueInput = styled.textarea`
   width: 100%;
@@ -129,11 +127,12 @@ const ValueInput = styled.textarea`
   font-size: 20px;
   font-weight: 400;
   color: inherit;
-  resize: none;
-  white-space: nowrap; /* 줄 바꿈을 방지 */
-  overflow: hidden; /* 넘치는 텍스트 숨김 */
-  text-overflow: ellipsis; /* ... 표시 */
-  display: block; /* block 요소로 설정 */
+  resize: none; /* 텍스트박스 크기 조정 불가 */
+  overflow-y: auto; /* 텍스트가 넘칠 때 스크롤 */
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  height: 35px; /* 기본 높이를 설정하여 넘치지 않게 함 */
+  display: block;
+  max-height: 150px; /* 텍스트가 너무 많이 들어가면 최대 높이 설정 */
   
   &:focus {
     outline: none;
@@ -143,51 +142,3 @@ const ValueInput = styled.textarea`
     background: transparent;
   }
 `;
-
-const StyledDatePicker = styled(DatePicker)`
-  border-radius: 5px;
-  background-color: transparent;
-  text-align: center;
-  border: none;
-  font-size: 16px;
-  padding: 0px;
-  margin-left: -19px;
-  font-family: none;
-
-  &:focus {
-    outline: none;
-    border: none;
-    font-size: 16px; 
-    padding: 0px;
-    font-family: none;
-  }
-
-  &::placeholder {
-    font-size: 16px; 
-    color: #ccc;
-    font-family: none;
-  }
-`;
-
-
-const AutoResizeTextarea = ({ value, readOnly, onChange }) => {
-    const textareaRef = useRef(null);
-  
-    useEffect(() => {
-      if (textareaRef.current) {
-        textareaRef.current.style.height = "auto";
-        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
-      }
-    }, [value]);
-  
-    return (
-      <ValueInput
-        as="textarea"
-        ref={textareaRef}
-        value={value}
-        readOnly={readOnly}
-        onChange={onChange}
-        rows={1}
-      />
-    );
-  };
