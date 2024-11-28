@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
 import { ko } from 'date-fns/locale';
 import axios from "axios";
+import { bitAnd } from "three/webgpu";
 
 function Table({ isEdited }) {
   const [name, setName] = useRecoilState(nameState);
@@ -34,6 +35,7 @@ function Table({ isEdited }) {
 
       <Birth><KeyWrap>생년월일</KeyWrap></Birth>
       <BirthValue>
+        <TextInput value={birth} readOnly={!isEdited} onChange={(e)=>setBirth(e.target.value)}/>
         {/* <BirthInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
         {/* <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
       </BirthValue>
