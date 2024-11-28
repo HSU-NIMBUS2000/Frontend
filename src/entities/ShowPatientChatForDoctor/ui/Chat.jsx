@@ -1,12 +1,34 @@
 import React from "react";
 import styled from "styled-components";
+import pyeoning from "../../../assets/image/pyeoning.svg";
+import person from "../../../assets/image/person.svg";
 
 function Chat({ isSend, content }) {
   return (
     <MainLayout isSend={isSend}>
-      <ChatWrapper isSend={isSend}>
-        <ChatContent isSend={isSend}>{content}</ChatContent>
-      </ChatWrapper>
+      <ChatContainer isSend={isSend}>
+        {!isSend && (
+          <>
+          <Chatbox>
+            <ChatImage src={pyeoning} alt="Chat Icon" />
+            <ChatWrapper isSend={isSend}>
+              <ChatContent isSend={isSend}>{content}</ChatContent>
+            </ChatWrapper>
+          </Chatbox>
+
+          </>
+        )}
+        {isSend && (
+          <>
+          <Chatbox>
+            <ChatWrapper isSend={isSend}>
+              <ChatContent isSend={isSend}>{content}</ChatContent>
+            </ChatWrapper>
+            <ChatImage src={person} alt="Chat Icon" />
+            </Chatbox>
+          </>
+        )}
+      </ChatContainer>
     </MainLayout>
   );
 }
@@ -16,14 +38,33 @@ export default Chat;
 const MainLayout = styled.div`
   display: flex;
   width: 100%;
+  gap:20px;
   justify-content: ${(props) => (props.isSend ? "flex-end" : "flex-start")};
+`;
+
+const ChatContainer = styled.div`
+  display: flex;
+  align-items: center;
+  
+`;
+
+const Chatbox=styled.div`
+  display: flex;
+  gap:10px;
+  margin:10px;
+`;
+
+const ChatImage = styled.img`
+  width: 40px; /* 이미지 너비 */
+  height: 40px; /* 이미지 높이 */
+  margin: ${(props) => (props.isSend ? "0 0 0 10px" : "0 10px 0 0")}; /* 간격 조정 */
 `;
 
 const ChatWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 30px 25px;
-  border-radius: 80px; /* 둥근 모서리 */
+  padding: 25px 30px;
+  border-radius: 3em; /* 둥근 모서리 */
   background: ${(props) =>
     props.isSend
       ? "rgba(255, 255, 255, 0.8)" /* 송신: 밝은 흰색 투명 */
@@ -36,13 +77,12 @@ const ChatWrapper = styled.div`
   max-width: 70%;
 `;
 
-
 const ChatContent = styled.div`
   border: none;
   font-size: 16px;
   width: 100%;
   outline: none;
-  color: ${(props) => (props.isSend ? "#00000" : "#FFFFFF")};
+  color: ${(props) => (props.isSend ? "#000000" : "#FFFFFF")};
   font-weight: 500;
   text-align: ${(props) => (props.isSend ? "right" : "left")};
 `;

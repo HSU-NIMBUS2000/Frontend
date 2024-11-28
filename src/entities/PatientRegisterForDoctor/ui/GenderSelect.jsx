@@ -44,8 +44,8 @@ const MainLayout = styled.div`
 
 const FormInfo = styled.div`
   align-items: baseline;
-  font-size: 20px;
-  font-weight: 500;
+    font-size: 22px;
+  font-weight: 550;
   text-align: left;
   margin-bottom: 10px;
 `;

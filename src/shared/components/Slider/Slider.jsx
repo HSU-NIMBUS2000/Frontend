@@ -87,7 +87,7 @@ export const Slide = styled.div`
 //   height: 300px;
   margin-right: 50px;
   border-radius: 10px;
-  background: #eee;
+  background-color: rgba(197, 213, 249, 0.4); /* 0.5는 투명도 (0 = 완전 투명, 1 = 불투명) */
   transform-origin: center center;
   transform: scale(1);
   transition: transform 0.5s;

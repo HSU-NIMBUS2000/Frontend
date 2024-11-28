@@ -57,8 +57,8 @@ const MainLayout = styled.div`
 
 const FormInfo = styled.div`
   align-items: baseline;
-  font-size: 20px;
-  font-weight: 500;
+    font-size: 22px;
+  font-weight: 550;
   text-align: left;
   margin-bottom: 10px;
 `;
@@ -77,7 +77,8 @@ const InfoInputWrapper = styled.div`
 
 const InfoInput = styled.textarea`
   border: none;
-  font-size: 17px;
+  font-size: 20px;
+  font-weight:400;
   width: 100%;
   height: ${({ height }) => height};
   outline: none;

@@ -69,7 +69,7 @@ const Button = styled.button`
   border: none;
   height: 70px;
   border-radius: 3em;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
   width: 100%;
   cursor: pointer;

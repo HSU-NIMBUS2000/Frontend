@@ -198,7 +198,8 @@ const Name = styled.div`
 const KeyWrap = styled.div`
   text-align: center;
   width: 100%;
-  font-weight: 600;
+  font-weight: 650;
+
 `;
 
 const NameValue = styled.div`
@@ -269,6 +270,7 @@ const TextInput = styled.input`
 width: 100%;
 outline: none;
 border: none;
+font-weight:400;
 
 `
 

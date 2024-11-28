@@ -48,7 +48,7 @@ function NewTable(isEdited) {
         <MainLayout>
             <FlexBox>
                 <Title>생년월일</Title>
-                <BirthValue>
+                {/* <BirthValue>
         {isEdited ? (
           <StyledDatePicker
             selected={birth}
@@ -63,7 +63,8 @@ function NewTable(isEdited) {
         ) : (
           <span>{formattedBirth}</span>
         )}
-      </BirthValue>
+      </BirthValue> */}
+      <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
             </FlexBox>
 
             <FlexBox>
@@ -104,6 +105,7 @@ const Title = styled.div`
 width: 100%;
 color: black;
 font-weight: 400;
+font-size:22px;
 `
 
 const Value = styled.div`
@@ -124,7 +126,8 @@ const ValueInput = styled.textarea`
   border: none;
   background: transparent;
   text-align: left;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 400;
   color: inherit;
   resize: none;
   white-space: nowrap; /* 줄 바꿈을 방지 */
