@@ -35,7 +35,7 @@ function Table({ isEdited }) {
 
       <Birth><KeyWrap>생년월일</KeyWrap></Birth>
       <BirthValue>
-        <TextInput value={birth} readOnly={!isEdited} onChange={(e)=>setBirth(e.target.value)}/>
+        <TextInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} />
         {/* <BirthInput value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
         {/* <AutoResizeTextarea value={birth} readOnly={!isEdited} onChange={(e) => setBirth(e.target.value)} /> */}
       </BirthValue>
@@ -63,10 +63,35 @@ function Table({ isEdited }) {
         {/* <AutoResizeTextarea value={disease} readOnly={!isEdited} onChange={(e) => setDisease(e.target.value)} /> */}
       </BirthValue>
 
-      <Birth><KeyWrap>프롬프트</KeyWrap></Birth>
-      <BirthValue>
-        <TextInput value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} />
-        {/* <AutoResizeTextarea value={prompt} readOnly={!isEdited} onChange={(e) => setPrompt(e.target.value)} /> */}
+      <Birth style={{ backgroundColor: "#6572d2", color: "white" }}>
+        <KeyWrap>프롬프트</KeyWrap>
+      </Birth>
+      <BirthValue style={{ backgroundColor: "#6572d2", height: "120px", overflow: "auto" }}>
+        <textarea
+          style={{
+            backgroundColor: '#6572d2', // 기본값
+            color: "white",           // 기본값
+            fontWeight: 600,          // 기본값
+            whiteSpace: "pre-wrap", // 줄바꿈 허용 및 공백 유지
+            overflowWrap: "break-word", // 긴 단어 줄바꿈
+            width: "100%", // 부모 요소 크기에 맞춤
+            height: "100%", // 부모 요소 높이에 맞춤
+            border: "none", // 불필요한 테두리 제거
+            boxSizing: "border-box", // 패딩 포함 크기 계산
+            resize: "none", // 크기 조정 비활성화
+          }}
+          value={prompt}
+          readOnly={!isEdited}
+          onChange={(e) => setPrompt(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault(); // 엔터로 줄바꿈 막기
+              e.target.style.backgroundColor = "skyblue";
+              e.target.style.color = "white";
+              e.target.style.fontWeight = 600;
+            }
+          }}
+        />
       </BirthValue>
 
       <Remark><KeyWrap>특이사항</KeyWrap></Remark>
