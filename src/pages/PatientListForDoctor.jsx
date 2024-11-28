@@ -10,9 +10,44 @@ import NewTable from "../entities/PatientInfoForDoctor/ui/NewTable";
 import Title from "../entities/PatientInfoForDoctor/ui/TItle";
 import Summary from "../entities/PatientInfoForDoctor/ui/Summary";
 import Chart from "../entities/PatientInfoForDoctor/ui/Chart";
+import axios from "axios";
+import { diseaseState, promptState } from "../shared/components/state/PatientInfoForDoctor";
+import { useRecoilState } from "recoil";
 
 function PatientListForDoctor() {
+
+  const [disease, setDisease] = useRecoilState(diseaseState);
+  const [prompt, setPrompt] = useRecoilState(promptState);
+
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('doctorToken');
+        const patientId = localStorage.getItem('patientId');
+
+        const response = await axios.get(`/api/patient/${patientId}/detail`, {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+        console.log('상세정보 데이터:', response.data.data);
+        setDisease(response.data.data.pyeoningDisease);
+        setPrompt(response.data.data.pyeoningPrompt);
+        
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [])
+
+
+  useEffect(() => {
+
+    
+
     const iframe = document.querySelector("iframe");
 
     iframe.onload = () => {
