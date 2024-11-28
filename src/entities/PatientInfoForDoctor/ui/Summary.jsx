@@ -2,9 +2,10 @@ import React, { useState } from "react"
 import { useEffect } from "react";
 import styled from "styled-components"
 import axios from "axios";
+import Slider from "../../../shared/components/Slider/Slider";
 
 function Summary (){
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,7 +20,7 @@ function Summary (){
               }
             });
             console.log('Data received:', response.data.data);
-            setContent(response.data.data[0].summaryContent);
+            setContent(response.data.data);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -34,13 +35,13 @@ function Summary (){
                 <TitleWrap>
                     <Title>AI 요약 보고서</Title>
                 </TitleWrap>
-                
-                <ContentWrap>
+                <Slider list={content}/>
+                {/* <ContentWrap>
 
                   {content}
 
                 
-                </ContentWrap>
+                </ContentWrap> */}
             </SubLayout>
         </MainLayout>
     )
