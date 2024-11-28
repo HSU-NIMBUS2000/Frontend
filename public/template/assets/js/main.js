@@ -32,22 +32,25 @@
 	// Nav.
 		$nav_links
 			.on('click', function(event) {
-
 				var href = $(this).attr('href');
 
-				// Not a panel link? Bail.
-					if (href.charAt(0) != '#'
-					||	$panels.filter(href).length == 0)
+				// Not a panel link? Handle back button separately
+				if (href.charAt(0) != '#') {
+					if ($(this).hasClass('fa-arrow-left')) {
+						event.preventDefault();
+						window.location.href = '/PatientListForDoctor';
 						return;
+					}
+					return;
+				}
 
-				// Prevent default.
-					event.preventDefault();
-					event.stopPropagation();
+				// Prevent default for panel links
+				event.preventDefault();
+				event.stopPropagation();
 
 				// Change panels.
-					if (window.location.hash != href)
-						window.location.hash = href;
-
+				if (window.location.hash != href)
+					window.location.hash = href;
 			});
 
 	// Panels.
@@ -69,8 +72,8 @@
 					if (!$panel
 					||	$panel.length == 0) {
 
-						$panel = $panels.first();
-						$link = $nav_links.first();
+						$panel = $panels.filter('#home'); // home panel을 기본값으로 설정
+						$link = $nav_links.filter('[href="#home"]'); // home 링크를 기본값으로 설정
 
 					}
 
@@ -99,17 +102,19 @@
 				 		$panel = $panels.filter(window.location.hash);
 						$link = $nav_links.filter('[href="' + window.location.hash + '"]');
 
-						// No target panel? Bail.
-							if ($panel.length == 0)
-								return;
+						// No target panel? Use home panel
+							if ($panel.length == 0) {
+								$panel = $panels.filter('#home');
+								$link = $nav_links.filter('[href="#home"]');
+							}
 
 					}
 
 				// No panel/link? Default to first.
 					else {
 
-						$panel = $panels.first();
-						$link = $nav_links.first();
+						$panel = $panels.filter('#home');
+						$link = $nav_links.filter('[href="#home"]');
 
 					}
 
